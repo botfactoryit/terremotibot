@@ -1,0 +1,24 @@
+{
+	"telegram": {
+		"token": "",
+		"serverPort": 0
+	},
+	"botan": {
+		"token": ""
+	},
+	"db": {
+		"connectionString": ""
+	},
+	"ingv": {
+		"pollingInterval": 60000
+	},
+	"geonames": {
+		"username": "demo"
+	},
+	"mapbox": {
+		"token": ""
+	},
+	"stathat": {
+		"key": ""
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"start": [
+		"Ciao {nome}! Questo bot permette di ricevere le notifiche dei terremoti che avvengono nella tua zona",
+		"Per iniziare, usa il pulsante 📎 e inviami la tua posizione, così saprò in quale zona ti trovi"
+	],
+	"help": "❓ <strong>Come funziona TerremotiBot?</strong>\n\n🌍 Inviami la tua posizione con il pulsante 📎 per aggiungere una nuova posizione\n\n🔔 Quando avviene un evento sismico nelle vicinanze, ti invierò una notifica non appena l'ente italiano <a href=\"http://www.ingv.it/\">INGV</a> pubblica i dati.\n\n⚙ Tramite il comando /impostazioni puoi cambiare il raggio di notifica in chilometri e la magnitudo minima di notifica.\n\n❌ Per smettere di ricevere le notifiche, premi sul luogo che vuoi disattivare dopo aver scelto il comando /posizioni\n\n❓ Problemi? Contattaci a info@botfactory.info\n\n/chisiamo",
+	"error": "Si è verificato un errore interno. È stato già segnalato agli sviluppatori. Ci dispiace per l'inconveniente. Se il problema persiste contattaci all'indirizzo email info@botfactory.info",
+	"dunno": "Non ho capito... Premi /aiuto per leggere le istruzioni",
+	"close": "❌ Chiudi",
+	"done": "Fatto",
+	
+	"locations_empty": "Per iniziare, usa il pulsante 📎 e inviami la tua posizione, così saprò in quale zona ti trovi 😄",
+	"locations": "<strong>Ecco le posizioni che hai aggiunto</strong>. Riceverai notifiche per i terremoti che avvengono nelle vicinanze.\n\n❌ selezionane una per rimuoverla\n\n📎 inviamene un'altra se vuoi ricevere notifiche anche per terremoti che avvengono in un'altra zona",
+	"location_invalid": "‼ Invia una posizione che si trovi sul territorio italiano",
+	"location_noresults": "‼ Non sono riuscito a capire il tuo comune... Se ti trovi sulla costa, invia una posizione un po' più interna. Funzionerà :)",
+	"location_ok": "✅ Ho aggiunto <strong>{{name}}</strong> alle posizioni salvate",
+	"location_exists": "‼ Hai già aggiunto questo luogo",
+	"location_removed": "✅ Fatto! La posizione è stata rimossa.\n\n🔕 Non riceverai più notifiche per terremoti vicino a <strong>{{name}}</strong>",
+	
+	"settings": "⚙ IMPOSTAZIONI\n\n🎯 Raggio di notifica: {{radius}} km\nⓂ Magnitudo minima: {{magnitude}} (<a href=\"https://ingvterremoti.wordpress.com/faq/faq-domande-frequenti-sui-terremoti/\">Richter/MMS</a>)",
+	"settings_menu_radius": "🎯 Modifica raggio",
+	"settings_menu_magnitude": "Ⓜ Modifica magnitudo min.",
+	"radius": "🎯 Scegli tra le opzioni il numero di chilometri. Verrai notificato solo per i terremoti il cui epicentro si trova entro il valore scelto",
+	"radius_big": "‼ Il numero di chilometri che hai scelto per il raggio di notifica è troppo grande! Il valore massimo è 300 km",
+	"radius_ok": "✅ Fatto! Il raggio di notifica è stato aggiornato.\n\n🔔 Riceverai notifiche per i terremoti il cui epicentro si trova <strong>entro {{value}}</strong> chilometri dalle tue posizioni",
+	"magnitude": "Ⓜ Scegli tra le opzioni la magnitudo minima di notifica. Verrai notificato solo per i terremoti con magnitudo maggiore o uguale al valore scelto (scala sismica <a href=\"https://ingvterremoti.wordpress.com/faq/faq-domande-frequenti-sui-terremoti/\">Richter/MMS</a>)",
+	"magnitude_small": "‼ Il valore di magnitudo minima di notifica che hai scelto è troppo piccolo! Il valore minimo è 2",
+	"magnitude_ok": "✅ Fatto!\n\n🔔 Riceverai notifiche solo per i terremoti con <strong>magnitudo maggiore o uguale a {{value}}</strong> della scala sismica (<a href=\"https://ingvterremoti.wordpress.com/faq/faq-domande-frequenti-sui-terremoti/\">Richter/MMS</a>)",
+	
+	"thanks": "Prego :)",
+	"notification": "TERREMOTO alle {{time date}}!\n\n• Magnitudo ({{magnitude.type}}): {{magnitude.value}}\n• Profondità: {{origin.depth}} km"
+}
