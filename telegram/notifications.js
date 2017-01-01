@@ -29,8 +29,8 @@ function send(chats, event, callback) {
 		let surveyUrl = 'http://www.haisentitoilterremoto.it/xml-server.php?item=quest&action=compile&output=int&event_id=' + event['id'];
 		
 		const inline = [
-			[{ text: '🌍 Dettagli', callback_data: `event;${event.id}` }],
-			[{ text: '❗ Hai sentito il terremoto?', url: surveyUrl }]
+			[{ text: '$$notification_details', callback_data: `event;${event.id}` }],
+			[{ text: '$$notification_survey', url: surveyUrl }]
 		];
 		
 		// No image card generated, fallback to text

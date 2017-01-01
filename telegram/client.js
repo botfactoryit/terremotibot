@@ -202,6 +202,7 @@ class TelegramClient {
 		var kb = {};
 		
 		if (options['inline']) {
+			this._replaceKeyboardPlaceholders(options['inline']);
 			kb['inline_keyboard'] = options['inline'];
 		}
 		
