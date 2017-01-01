@@ -1,5 +1,5 @@
 {
-	"start": "Ciao {{name}}! Questo bot permette di ricevere le notifiche dei terremoti che avvengono nella tua zona.\n\nPer iniziare, usa il pulsante 📎 e inviami la tua posizione, così saprò dove ti trovi",
+	"start": "Ciao {{name}}! Questo bot permette di ricevere notifiche per i terremoti che avvengono nella tua zona.\n\nPer iniziare, usa il pulsante 📎 e inviami la tua posizione, così saprò dove ti trovi",
 	"help": "❓ <strong>Come funziona TerremotiBot?</strong>\n\n🌍 Inviami la tua posizione con il pulsante 📎 per aggiungere una nuova posizione\n\n🔔 Quando avviene un evento sismico nelle vicinanze, ti invierò una notifica non appena l'ente italiano <a href=\"http://www.ingv.it/\">INGV</a> pubblica i dati.\n\n⚙ Tramite il comando /impostazioni puoi cambiare il raggio di notifica in chilometri e la magnitudo minima di notifica.\n\n❌ Per smettere di ricevere le notifiche, premi sul luogo che vuoi disattivare dopo aver scelto il comando /posizioni\n\n❓ Problemi? Contattaci a info@botfactory.info\n\n/chisiamo",
 	"error": "Si è verificato un errore interno. È stato già segnalato agli sviluppatori. Ci dispiace per l'inconveniente. Se il problema persiste contattaci all'indirizzo email info@botfactory.info",
 	"dunno": "Non ho capito... Premi /aiuto per leggere le istruzioni",
