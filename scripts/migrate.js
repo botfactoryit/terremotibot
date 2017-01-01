@@ -63,21 +63,34 @@ function go() {
 					let lat = doc['notification']['location']['coordinates'][1];
 					let lon = doc['notification']['location']['coordinates'][0];
 					
-					geocoding.reverse(lat, lon, (err, result) => {
-						let name;
-						if (err) {
-							name = 'Posizione sconosciuta';
+					db.locations.findOne({
+						chat: doc['id'],
+						point: doc['notification']['location']
+					}, (err, exists) => {
+						if (err) throw err;
+						
+						if (exists) {
+							cb();
 						}
 						else {
-							name = result['name'];
+							geocoding.reverse(lat, lon, (err, result) => {
+								let name;
+								if (err) {
+									name = 'Posizione sconosciuta';
+								}
+								else {
+									name = result['name'];
+								}
+								
+								db.locations.insert({
+									chat: doc['id'],
+									point: doc['notification']['location'],
+									name: name
+								}, cb);
+							});
 						}
-						
-						db.locations.insert({
-							chat: doc['id'],
-							point: doc['notification']['location'],
-							name: name
-						}, cb);
 					});
+					
 				}
 				else {
 					cb();
