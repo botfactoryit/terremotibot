@@ -270,7 +270,7 @@ class TelegramProcessor {
 				});
 			}
 			else {
-				let radiusMatch = text.match(/([0-9]{2,3}) ?(?:km|chilometri|kilometri)?/i);
+				let radiusMatch = text.match(/^([0-9]{2,3}) ?(?:km|chilometri|kilometri)?/i);
 				// http://regexr.com/3ev1b
 				let magMatch = text.match(/^M? ?([0-9]{1}(?:[,\.]{1}[0-9]{1})?)\+?$/i);
 				
