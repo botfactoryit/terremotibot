@@ -174,7 +174,17 @@ class TelegramProcessor {
 		let text = this.message['text'];
 		let cmd = text.replace(/\/ /, '').toLowerCase();
 		
-		if (cmd.includes('chiudi') || cmd.includes('annulla')) {
+		if (cmd.includes('start') || cmd.includes('avvia')) {
+			let msg = {
+				key: 'start',
+				data: {
+					name: this.chat['first_name']
+				}
+			};
+			
+			this.chat.send(msg);
+		}
+		else if (cmd.includes('chiudi') || cmd.includes('annulla')) {
 			let msg = { key: 'done' };
 			this.chat.send(msg);
 			

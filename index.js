@@ -1,5 +1,4 @@
 const bole   = require('bole');
-const fs     = require('fs');
 const async  = require('async');
 
 // Initialize the logger
