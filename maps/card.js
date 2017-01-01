@@ -17,13 +17,13 @@ class Card {
 		let lon = this.event['origin']['lon'];
 		let id = this.event['id'];
 		
-		logger.info(`Downloading map for <${id}>`);
+		logger.info(`Downloading map for event <${id}>`);
 		
 		// Download the static map file from Google Maps
 		this._downloadMap(id, lat, lon, (err, mapPath) => {
 			if (err) ; // already handled
 			
-			logger.info(`Composing card for <${id}>`);
+			logger.info(`Composing card for event <${id}>`);
 			
 			// Compose the card with the map and the earthquake details
 			this._composeCard(this.event, mapPath, (err, cardPath) => {

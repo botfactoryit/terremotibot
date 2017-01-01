@@ -60,7 +60,7 @@ poller.on('earthquakes', (earthquakes) => {
 		let { lat, lon } = ev['origin'];
 		let magnitude = ev['magnitude']['value'];
 		
-		logger.info(`Reverse geocoding for <${ev.id}>`);
+		logger.info(`Reverse geocoding for event <${ev.id}>`);
 		
 		// Convert the geographical coordinates to a city name (reverse geocoding)
 		geocoding.reverse(lat, lon, (err, result) => {
