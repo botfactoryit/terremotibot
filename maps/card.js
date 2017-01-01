@@ -92,7 +92,8 @@ class Card {
 		img.fill('#73C94B');
 		
 		// Write the magnitude value
-		img.draw(`text 470.25,72 '${event.magnitude.value}'`);
+		let mag = event['magnitude']['value'].toFixed(1);
+		img.draw(`text 470.25,72 '${mag}'`);
 		
 		// Write the city name in green, medium size
 		img.fontSize(21);
