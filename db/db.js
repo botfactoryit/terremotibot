@@ -32,7 +32,10 @@ let chats = {
 	// Get or create a new 'chat' document in the database,
 	// starting from a chat object provided by Telegram
 	get(chat, callback) {
-		let set = { last_seen_at: new Date() };
+		let set = {
+			last_seen_at: new Date()
+		};
+		
 		if (chat['first_name']) {
 			set['first_name'] = chat['first_name'];
 		}
@@ -48,6 +51,7 @@ let chats = {
 			query: { id: chat['id'] },
 			update: {
 				$set: set,
+				$unset: { status: 1 },
 				$setOnInsert: {
 					created_at: new Date(),
 					settings: {
@@ -130,6 +134,7 @@ let chats = {
 				$project: {
 					distance: true,
 					'chat.id': true,
+					'chat.status': true,
 					'chat.settings.radius': { $ifNull: ['$chat.settings.radius', 100] },
 					'chat.settings.magnitude': { $ifNull: ['$chat.settings.magnitude', 2] }
 				}
@@ -140,6 +145,7 @@ let chats = {
 				$project: {
 					distance: true,
 					'chat.id': true,
+					'chat.status': true,
 					eligible: {
 						$and: [
 							{ $lte: ['$distance', '$chat.settings.radius'] },
@@ -151,7 +157,8 @@ let chats = {
 			// Keep only eligible users
 			{
 				$match: {
-					eligible: true
+					eligible: true,
+					'chat.status': null
 				}
 			},
 			// Remove duplicate chat IDs
@@ -178,6 +185,10 @@ let chats = {
 				}
 			}
 		], callback);
+	},
+	
+	setStatus(chatId, status, callback) {
+		db.chats.update({ id: chatId }, { $set: { status: status } }, callback);
 	}
 };
 

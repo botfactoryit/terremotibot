@@ -69,21 +69,21 @@ class TelegramClient {
 				
 				var reasons = [
 					// the bot was blocked by the user
-					{ text: 'Bot was blocked', stage: -10 },
+					{ text: 'Bot was blocked', status: -10 },
 					// the user doesn't exist anymore
-					{ text: 'deleted user', stage: -20 },
-					{ text: 'user is deleted', stage: -20 },
-					{ text: 'user is deactivated', stage: -20 },
+					{ text: 'deleted user', status: -20 },
+					{ text: 'user is deleted', status: -20 },
+					{ text: 'user is deactivated', status: -20 },
 					// the group has been deleted
-					{ text: 'group chat is deactivated', stage: -30 },
+					{ text: 'group chat is deactivated', status: -30 },
 					// the bot was removed from the (super)group
-					{ text: 'bot was kicked from the', stage: -40 },
-					{ text: 'bot is not a member of the supergroup chat', stage: -40 }
+					{ text: 'bot was kicked from the', status: -40 },
+					{ text: 'bot is not a member of the supergroup chat', status: -40 }
 				];
 				
 				reasons.forEach((r) => {
 					if (description.includes(r['text'])) {
-						result['newStage'] = r['stage'];
+						result['newStatus'] = r['status'];
 					}
 				});
 				
@@ -172,10 +172,10 @@ class TelegramClient {
 		request(req, (err, res, resBody) => {
 			let result = this._analyzeResponse(req, err, res, resBody);
 			
-			if (result['newStage']) {
-				db.chats.setStage(chatId, result['newStage'], (err) => {
+			if (result['newStatus']) {
+				db.chats.setStatus(chatId, result['newStatus'], (err) => {
 					if (err) {
-						logger.error(err, 'Error setting newStage in sendMessage');
+						logger.error(err, 'Error setting newStatus in sendMessage');
 					}
 				});
 			}
@@ -223,10 +223,10 @@ class TelegramClient {
 		request(req, (err, res, resBody) => {
 			var result = this._analyzeResponse(req, err, res, resBody);
 			
-			if (result['newStage']) {
-				db.chats.setStage(chatId, result['newStage'], (err) => {
+			if (result['newStatus']) {
+				db.chats.setStatus(chatId, result['newStatus'], (err) => {
 					if (err) {
-						logger.error(err, 'Error setting newStage in sendMessage');
+						logger.error(err, 'Error setting newStatus in sendMessage');
 					}
 				});
 			}
