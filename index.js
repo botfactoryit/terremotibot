@@ -1,43 +1,20 @@
 const bole   = require('bole');
 const fs     = require('fs');
 const async  = require('async');
-const pretty = require('bistre')();
 
 // Initialize the logger
-let outputs = [
-	{ level: 'debug', stream: pretty, flush: false },
-	{ level: 'debug', stream: fs.createWriteStream(__dirname + '/log/log.log', { flags: 'a' }), flush: true }
-];
-pretty.pipe(process.stdout);
-bole.output(outputs);
+bole.output([{ level: 'debug', stream: process.stdout }]);
 
 var logger = bole('bot');
-logger.info('Initializing TerremotiBot...');
+logger.info('TerremotiBot is booting...');
 
 // When an expection occurs,
-// log the 'Error', end the output streams and euthanasia
+// log the 'Error' and euthanasia
 process.on('uncaughtException', (err) => {
 	logger.error(err);
-	
-	let closedCount = 0;
-	let _outputs = outputs.filter((o) => o.flush === true);
-	
-	_outputs.forEach((o) => {
-		o.stream.once('finish', () => {
-			closedCount++;
-			
-			if (closedCount == _outputs.length) {
-				process.exit(1);
-			}
-		});
-		
-		o.stream.end();
-	});
-	
-	if (_outputs.length == 0) {
-		console.error(err);
-		process.exit(1);
-	}
+	// We can safely exit because the only logger output is stdout,
+	// which is flushed automatically when the process shuts down
+	process.exit(1);
 });
 
 // Load internal modules
