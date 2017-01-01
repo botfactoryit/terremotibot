@@ -122,20 +122,19 @@ class TelegramProcessor {
 		let lon = loc['longitude'];
 		
 		geocoding.reverse(lat, lon, (err, result) => {
-			if (err['type'] == 'network' || err['type'] == 'response') {
-				this.chat.error();
-				return;
-			}
-			
-			if (err['type'] == 'invalid') {
-				let msg = { key: 'location_invalid' };
-				this.chat.send(msg);
-				return;
-			}
-			
-			if (err['type'] == 'noresults') {
-				let msg = { key: 'location_noresults' };
-				this.chat.send(msg);
+			if (err) {
+				if (err['type'] == 'network' || err['type'] == 'response') {
+					this.chat.error();
+				}
+				else if (err['type'] == 'invalid') {
+					let msg = { key: 'location_invalid' };
+					this.chat.send(msg);
+				}
+				else if (err['type'] == 'noresults') {
+					let msg = { key: 'location_noresults' };
+					this.chat.send(msg);
+				}
+				
 				return;
 			}
 			
