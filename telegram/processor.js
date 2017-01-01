@@ -67,6 +67,7 @@ class TelegramProcessor {
 	}
 	
 	_handleCallback(query) {
+		logger.debug(`Incoming <query> from <${this.chat.id}>`);
 		let data = query['data'].split(';');
 		
 		if (data[0] == 'settings') {
@@ -113,6 +114,7 @@ class TelegramProcessor {
 	}
 	
 	_handleLocation() {
+		logger.debug(`Incoming <location> from <${this.chat.id}>`);
 		botan.log(this.message, 'location');
 		
 		let loc = this.message['location'];
@@ -171,6 +173,7 @@ class TelegramProcessor {
 	}
 	
 	_handleText() {
+		logger.debug(`Incoming <text> from <${this.chat.id}>`);
 		let text = this.message['text'];
 		let cmd = text.replace(/\/ /, '').toLowerCase();
 		
