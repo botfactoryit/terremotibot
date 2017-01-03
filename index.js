@@ -84,6 +84,8 @@ poller.on('earthquakes', (earthquakes) => {
 					return;
 				}
 				
+				db.history.setNotifications(ev['id'], chats);
+				
 				// If there's at least one user to notify
 				if (chats.length > 0) {
 					// Calculate average and min distance from the earthquake

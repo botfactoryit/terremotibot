@@ -252,6 +252,14 @@ let history = {
 		}, {
 			$set: { city: city }
 		}, callback);
+	},
+	
+	setNotifications(eventId, arr, callback) {
+		db.history.update({
+			id: eventId
+		}, {
+			$set: { notifications: arr }
+		}, callback);
 	}
 };
 
