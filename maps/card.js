@@ -110,6 +110,8 @@ class Card {
 			}
 		}
 		
+		city = city.replace(/'/g, '\\\'');
+		
 		img.draw(`text 26,31 '${city.toUpperCase()}'`);
 		
 		// Small gray text
