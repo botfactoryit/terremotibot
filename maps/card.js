@@ -5,6 +5,7 @@ const dateHelper = require('../helper.js');
 const logger     = require('bole')('maps');
 const config     = require('../config');
 
+const TEMP_DIR     = require('os').tmpdir();
 const MAPBOX_TOKEN = config('mapbox').token;
 
 class Card {
@@ -43,7 +44,7 @@ class Card {
 		let url = `https://api.mapbox.com/styles/v1/matteocontrini/ciwj780r900232qmqozqa3o0r/static/${center},8/600x484`;
 		url = encodeURI(url);
 		
-		let fileName = __dirname + '/tmp/maps/' + eventId + '.png';
+		let fileName = TEMP_DIR + '/terre-map-' + eventId + '.png';
 		let stream = fs.createWriteStream(fileName);
 		
 		let options = {
@@ -129,7 +130,7 @@ class Card {
 		let time = dateHelper.dateToPrettyTime(event.date);
 		img.draw(`text 247,94 '${time}'`);
 		
-		let output = __dirname + '/tmp/cards/' + event['id'] + '.png';
+		let output = TEMP_DIR + '/terre-card-' + event['id'] + '.png';
 		img.write(output, (err) => {
 			if (err) {
 				logger.error(err, 'gm error', event, img.args());
