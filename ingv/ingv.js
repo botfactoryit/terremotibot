@@ -20,6 +20,11 @@ class Ingv {
 		
 		this.minMagnitude = options.minMagnitude || 2;
 		this.maxMagnitude = options.maxMagnitude || 10;
+		
+		this.minLatitude = options.minLatitude || 35;
+		this.maxLatitude = options.maxLatitude || 49;
+		this.minLongitude = options.minLongitude || 5;
+		this.maxLongitude = options.maxLongitude || 20;
 	}
 	
 	get(callback) {
@@ -27,7 +32,11 @@ class Ingv {
 			'starttime': this.startDate.format(DATETIME_FORMAT),
 			'endtime': this.endDate.format(DATETIME_FORMAT),
 			'minmag': this.minMagnitude,
-			'maxmag': this.maxMagnitude
+			'maxmag': this.maxMagnitude,
+			'minlat': this.minLatitude,
+			'maxlat': this.maxLatitude,
+			'minlon': this.minLongitude,
+			'maxlon': this.maxLongitude
 		};
 		
 		var req = {
