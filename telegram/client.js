@@ -115,7 +115,7 @@ class TelegramClient {
 		kb.forEach((line) => {
 			line.forEach((btn) => {
 				if (btn['text'] && btn['text'].slice(0, 2) == '$$') {
-					btn['text'] = strings.get(btn['text'].slice(2));
+					btn['text'] = compiler(btn['text'].slice(2), {});
 				}
 			});
 		});
