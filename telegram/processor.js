@@ -100,6 +100,8 @@ class TelegramProcessor {
 	
 	_handleMessage(message) {
 		this.message = message;
+		message['date'] = new Date(message['date'] * 1000);
+		db.incoming.insert(message);
 		
 		if (message['location']) {
 			this._handleLocation();

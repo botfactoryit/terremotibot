@@ -1,5 +1,5 @@
-const bole   = require('bole');
-const async  = require('async');
+const bole  = require('bole');
+const async = require('async');
 
 // Initialize the logger
 bole.output([{ level: 'debug', stream: process.stdout }]);

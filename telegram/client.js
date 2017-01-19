@@ -2,7 +2,6 @@ const request  = require('request');
 const config   = require('../config');
 const db       = require('../db');
 const compiler = require('./compiler.js');
-const strings  = require('./strings.js');
 const logger   = require('bole')('tg');
 const fs       = require('fs');
 
@@ -169,6 +168,15 @@ class TelegramClient {
 			url: ENDPOINTS['sendMessage']
 		};
 		
+		let archiveMessage = {
+			chat: { id: chatId },
+			text: text,
+			reply_markup: kb,
+			date: new Date()
+		};
+		
+		db.outgoing.insert(archiveMessage);
+		
 		request(req, (err, res, resBody) => {
 			let result = this._analyzeResponse(req, err, res, resBody);
 			
@@ -219,6 +227,16 @@ class TelegramClient {
 			json: true,
 			url: ENDPOINTS['sendPhoto']
 		};
+		
+		let archiveMessage = {
+			chat: { id: chatId },
+			photo: filePath,
+			reply_markup: kb,
+			caption: options['caption'],
+			date: new Date()
+		};
+		
+		db.outgoing.insert(archiveMessage);
 		
 		request(req, (err, res, resBody) => {
 			var result = this._analyzeResponse(req, err, res, resBody);
