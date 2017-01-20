@@ -120,6 +120,31 @@ class TelegramProcessor {
 				}
 			}
 		}
+		else if (data[0] == 'event') {
+			let eventId = data[1];
+			
+			db.history.findById(eventId, (err, event) => {
+				if (err) {
+					this.chat.error();
+					logger.error(err, 'history.findById error');
+					return;
+				}
+				else if (!event) {
+					// TODO: answer callback query with error
+					return;
+				}
+				
+				let msg = {
+					key: 'details',
+					data: event,
+					inline: [
+						[{ text: '$$details_ingv', url: 'http://cnt.rm.ingv.it/event/' + event['id'] }]
+					]
+				};
+				
+				this.chat.send(msg);
+			});
+		}
 	}
 	
 	_sendBroadcastSettingMessage(messageId) {

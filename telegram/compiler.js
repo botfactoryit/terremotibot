@@ -6,6 +6,7 @@ const helper     = require('../helper.js');
 // Register the 'time' handlebars helper,
 // which converts Date objects into pretty time representations
 Handlebars.registerHelper('time', helper.dateToPrettyTime);
+Handlebars.registerHelper('date', helper.dateToPrettyDate);
 Handlebars.registerHelper('bool', helper.boolToEnabled);
 
 function compile(key, data) {

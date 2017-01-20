@@ -5,6 +5,7 @@
 	"dunno": "Non ho capito... Premi /aiuto per leggere le istruzioni",
 	"close": ":x: Chiudi",
 	"done": "Fatto",
+	"thanks": "Prego :)",
 	
 	"locations_empty": "Per iniziare, usa il pulsante :paperclip: e inviami la tua posizione, così saprò in quale zona ti trovi :smile:",
 	"locations": "<strong>Ecco le posizioni che hai aggiunto</strong>. Riceverai notifiche per i terremoti che avvengono nelle vicinanze.\n\n:x: selezionane una per rimuoverla\n\n:paperclip: inviamene un'altra se vuoi ricevere notifiche anche per terremoti che avvengono in un'altra zona",
@@ -30,8 +31,9 @@
 	"broadcast_disabled": ":white_check_mark: Disattiva",
 	"broadcast_disable": "Disattiva",
 	
-	"thanks": "Prego :)",
 	"notification": "TERREMOTO alle {{time date}}\nEpicentro a {{distance.kms}} km da {{distance.name}}\n\n• Luogo: {{city}}\n• Magnitudo ({{magnitude.type}}): {{magnitude.value}}",
 	"notification_survey": ":exclamation: Compila il questionario",
-	"notification_details": ":earth_africa: Dettagli"
+	"notification_details": ":earth_africa: Dettagli",
+	"details": "Terremoto ore {{time date}} del {{date date}}\n\n• <strong>Epicentro</strong>: {{city}}\n• <strong>Coordinate</strong>: {{origin.lat}}, {{origin.lon}}\n\n• <strong>Profondità</strong>: {{origin.depth}} km\n• <strong>Magnitudo</strong> ({{magnitude.type}}): {{magnitude.value}} ± {{magnitude.uncertainty}}\n• Rilevato da {{stationsCount}} stazioni",
+	"details_ingv": "📊 Pagina evento INGV"
 }

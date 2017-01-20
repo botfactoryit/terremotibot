@@ -364,6 +364,12 @@ let history = {
 		}, {
 			$set: { notifications: arr }
 		}, callback);
+	},
+	
+	findById(eventId, callback) {
+		db.history.findOne({
+			id: eventId
+		}, callback);
 	}
 };
 
