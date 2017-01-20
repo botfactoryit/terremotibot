@@ -133,6 +133,7 @@ let chats = {
 			{
 				$project: {
 					distance: true,
+					name: true,
 					'chat.id': true,
 					'chat.status': true,
 					'chat.settings.radius': { $ifNull: ['$chat.settings.radius', 100] },
@@ -144,6 +145,7 @@ let chats = {
 			{
 				$project: {
 					distance: true,
+					name: true,
 					'chat.id': true,
 					'chat.status': true,
 					eligible: {
@@ -165,7 +167,12 @@ let chats = {
 			{
 				$group: {
 					_id: '$chat.id',
-					//distances: { $push: '$distance' },
+					distances: {
+						$push: {
+							kms: '$distance',
+							name: '$name'
+						}
+					},
 					min_distance: { $min: '$distance' }
 				}
 			},
@@ -174,7 +181,8 @@ let chats = {
 				$project: {
 					_id: false,
 					id: '$_id',
-					min_distance: true
+					min_distance: true,
+					distances: true
 				}
 			},
 			// Sort in ascending order, so that users that are near

@@ -204,24 +204,29 @@ class TelegramClient {
 	 * Send a photo
 	 */
 	sendPhoto(options, callback) {
-		var chatId = options['chat'];
-		var filePath = options['path'];
+		let chatId = options['chat'];
+		let filePath = options['path'];
+		let caption = options['caption'];
 		
-		var kb = {};
+		if (typeof caption == 'object') {
+			caption = compiler(options['caption']['key'], options['caption']['data']);
+		}
+		
+		let kb = {};
 		
 		if (options['inline']) {
 			this._replaceKeyboardPlaceholders(options['inline']);
 			kb['inline_keyboard'] = options['inline'];
 		}
 		
-		var formData = {
+		let formData = {
 			chat_id: chatId,
 			photo: fs.createReadStream(filePath),
 			reply_markup: JSON.stringify(kb),
-			caption: options['caption']
+			caption: caption
 		};
 				
-		var req = {
+		let req = {
 			method: 'POST',
 			formData: formData,
 			json: true,
@@ -232,14 +237,14 @@ class TelegramClient {
 			chat: { id: chatId },
 			photo: filePath,
 			reply_markup: kb,
-			caption: options['caption'],
+			caption: caption,
 			date: new Date()
 		};
 		
 		db.outgoing.insert(archiveMessage);
 		
 		request(req, (err, res, resBody) => {
-			var result = this._analyzeResponse(req, err, res, resBody);
+			let result = this._analyzeResponse(req, err, res, resBody);
 			
 			if (result['newStatus']) {
 				db.chats.setStatus(chatId, result['newStatus'], (err) => {

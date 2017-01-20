@@ -25,7 +25,7 @@
 	"magnitude_ok": ":white_check_mark: Fatto!\n\n:bell: Riceverai notifiche solo per i terremoti con <strong>magnitudo maggiore o uguale a {{value}}</strong> della scala sismica (<a href=\"https://ingvterremoti.wordpress.com/faq/faq-domande-frequenti-sui-terremoti/\">Richter/MMS</a>)",
 	
 	"thanks": "Prego :)",
-	"notification": "TERREMOTO alle {{time date}}!\n\n• Magnitudo ({{magnitude.type}}): {{magnitude.value}}\n• Profondità: {{origin.depth}} km",
+	"notification": "TERREMOTO alle {{time date}}\nEpicentro a {{distance.kms}} km da {{distance.name}}\n\n• Luogo: {{city}}\n• Magnitudo ({{magnitude.type}}): {{magnitude.value}}",
 	"notification_survey": ":exclamation: Compila il questionario",
 	"notification_details": ":earth_africa: Dettagli"
 }
