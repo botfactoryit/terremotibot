@@ -1,11 +1,9 @@
-const Handlebars = require('handlebars');
 const bole       = require('bole');
 const async      = require('async');
 
 const TelegramClient = require('./client.js');
-const strings        = require('./strings.js');
 const Card           = require('../maps').Card;
-const helper         = require('../helper.js');
+const db             = require('../db');
 
 const logger = bole('notifications');
 
@@ -13,14 +11,69 @@ const logger = bole('notifications');
 // functions for calling Telegram API methods
 const tg = new TelegramClient();
 
-// Register the 'time' handlebars helper,
-// which converts Date objects into pretty time representations
-Handlebars.registerHelper('time', helper.dateToPrettyTime);
+function broadcast(event, callback) {
+	findEligibleBroadcast(event, (err, chats) => {
+		if (err) {
+			logger.error(err, 'findEligibleBroadcast query error');
+			callback();
+			return;
+		}
+		
+		logger.info(`Sending BROADCAST notification for event <${event.id}> to <${chats.length}> chats`);
+		
+		sendToChats(event, chats, callback);
+	});
+}
 
-// Compile the handlebars notification template
-const template = Handlebars.compile(strings.get('notification'), { noEscape: true });
+function send(event, callback) {
+	findEligible(event, (err, chats) => {
+		if (err) {
+			logger.error(err, 'findEligible query error');
+			callback();
+			return;
+		}
+		
+		logger.info(`Sending notification for event <${event.id}> to <${chats.length}> chats`);
+		
+		sendToChats(event, chats, callback);
+	});
+}
 
-function send(chats, event, callback) {
+function findEligible(event, callback) {
+	let { lat, lon } = event['origin'];
+	let magnitude = event['magnitude']['value'];
+	
+	// Find users that are eligible for the notification
+	db.chats.findEligible(lat, lon, magnitude, (err, chats) => {
+		if (err) {
+			callback(err);
+			return;
+		}
+		
+		db.history.setNotifications(event['id'], chats);
+		
+		callback(null, chats);
+	});
+}
+
+function findEligibleBroadcast(event, callback) {
+	let { lat, lon } = event['origin'];
+	let magnitude = event['magnitude']['value'];
+	
+	// Find users that are eligible for the broadcast notification
+	db.chats.findEligibleBroadcast(lat, lon, magnitude, (err, chats) => {
+		if (err) {
+			callback(err);
+			return;
+		}
+		
+		db.history.setNotifications(event['id'], chats);
+		
+		callback(null, chats);
+	});
+}
+
+function sendToChats(event, chats, callback) {
 	// Generate the image card
 	let card = new Card(event);
 	card.generate((err, filePath) => {
@@ -88,3 +141,4 @@ function send(chats, event, callback) {
 }
 
 module.exports.send = send;
+module.exports.broadcast = broadcast;

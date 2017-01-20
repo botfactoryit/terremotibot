@@ -201,6 +201,50 @@ class TelegramClient {
 	}
 	
 	/**
+	 * Edit a message
+	 */
+	editMessage(options, callback) {
+		let chatId = options['chat'];
+		let text = options['text'];
+		let inline = options['inline'];
+		let messageId = options['messageId'];
+		
+		if (!text) {
+			text = compiler(options['key'], options['data']);
+		}
+		
+		let kb = {};
+		
+		if (inline) {
+			this._replaceKeyboardPlaceholders(inline);
+			kb = { inline_keyboard: inline };
+		}
+		
+		let body = {
+			chat_id: chatId,
+			text: text,
+			message_id: messageId,
+			disable_web_page_preview: true,
+			reply_markup: JSON.stringify(kb),
+			parse_mode: 'HTML'
+		};
+		
+		let req = {
+			method: 'POST',
+			body: body,
+			json: true,
+			url: ENDPOINTS['editMessage']
+		};
+		
+		request(req, (err, res, resBody) => {
+			this._analyzeResponse(req, err, res, resBody);
+			
+			// don't care
+			callback && callback();
+		});
+	}
+	
+	/**
 	 * Send a photo
 	 */
 	sendPhoto(options, callback) {

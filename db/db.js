@@ -56,7 +56,8 @@ let chats = {
 					created_at: new Date(),
 					settings: {
 						radius: 100,
-						magnitude: 2
+						magnitude: 2,
+						broadcast: true
 					}
 				}
 			},
@@ -82,6 +83,19 @@ let chats = {
 		let set = {
 			updated_at: new Date(),
 			'settings.magnitude': value
+		};
+		
+		db.chats.update({
+			id: chatId
+		}, {
+			$set: set
+		}, callback);
+	},
+	
+	setBroadcast(chatId, value, callback) {
+		let set = {
+			updated_at: new Date(),
+			'settings.broadcast': value
 		};
 		
 		db.chats.update({
@@ -161,6 +175,88 @@ let chats = {
 				$match: {
 					eligible: true,
 					'chat.status': null
+				}
+			},
+			// Remove duplicate chat IDs
+			{
+				$group: {
+					_id: '$chat.id',
+					distances: {
+						$push: {
+							kms: '$distance',
+							name: '$name'
+						}
+					},
+					min_distance: { $min: '$distance' }
+				}
+			},
+			// Rename '_id' to 'id'
+			{
+				$project: {
+					_id: false,
+					id: '$_id',
+					min_distance: true,
+					distances: true
+				}
+			},
+			// Sort in ascending order, so that users that are near
+			// the earthquake will get the notification sooner
+			{
+				$sort: {
+					min_distance: 1
+				}
+			}
+		], callback);
+	},
+	
+	findEligibleBroadcast(lat, lon, magnitude, callback) {
+		db.locations.aggregate([
+			{
+				$geoNear: {
+					// The point for which to find the closest documents
+					near: {
+						type: 'Point',
+						coordinates: [lon, lat]
+					},
+					// The output field name that contains the calculated distance
+					distanceField: 'distance',
+					// The factor to multiply all distances returned by the query
+					// The value converts meters to kilometers
+					distanceMultiplier: 0.001,
+					// This lets MongoDB know that we live on a spherical planet
+					spherical: true,
+					// Override default value of 100 returned documents
+					limit: 100000
+				}
+			},
+			// Replace the 'chat' (ID) field with the full chat object
+			{
+				$lookup: {
+				    from: 'chats',
+				    localField: 'chat',
+				    foreignField: 'id',
+				    as: 'chat'
+				}
+			},
+			// Make sure tha 'chat' field is an object and not an array
+			{
+				$unwind: {
+					path: '$chat'
+				}
+			},
+			// Filter chats with the broadcast feature enabled
+			{
+				$match: {
+					'chat.settings.broadcast': true,
+					'chat.status': null
+				}
+			},
+			// Keep only useful fields
+			{
+				$project: {
+					distance: true,
+					name: true,
+					'chat.id': true
 				}
 			},
 			// Remove duplicate chat IDs

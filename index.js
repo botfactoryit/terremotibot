@@ -72,49 +72,19 @@ poller.on('earthquakes', (earthquakes) => {
 				city = 'Zona ' + ev['zone'];
 			}
 			
-			// Update the db representation of the event
 			ev['city'] = city;
+			// Update the db representation of the event
 			db.history.setCity(ev['id'], city);
 			
-			// Find users that are eligible for the notification
-			db.chats.findEligible(lat, lon, magnitude, (err, chats) => {
-				if (err) {
-					logger.error('findEligible query error', err);
-					callback();
-					return;
-				}
-				
-				db.history.setNotifications(ev['id'], chats);
-				
-				// If there's at least one user to notify
-				if (chats.length > 0) {
-					// Calculate average and min distance from the earthquake
-					let sum = 0;
-					let min = 300;
-					
-					chats.forEach((chat) => {
-						sum += chat['min_distance'];
-						
-						if (chat['min_distance'] < min) {
-							min = chat['min_distance'];
-						}
-					});
-					
-					var avg = (sum / chats.length).toFixed(2).toString();
-					
-					logger.info(`Sending notification to <${chats.length}> chats! Avg distance <${avg}>`);
-					
-					// Prepare and send out notifications to the chats
-					// When the process is finished, callback will be called
-					// and the next earthquake event processed
-					notifications.send(chats, ev, callback);
-				}
-				else {
-					logger.info('No chats to notify');
-					
-					callback();
-				}
-			});
+			// Prepare and send out notifications to the chats
+			// When the process is finished, callback will be called
+			// and the next earthquake event processed
+			if (magnitude >= 5) {
+				notifications.broadcast(ev, callback);
+			}
+			else {
+				notifications.send(ev, callback);
+			}
 		});
 	}, () => {
 		logger.info('Done');

@@ -40,7 +40,8 @@ function go() {
 			'notification.range': 'settings.radius'
 		},
 		$set: {
-			'settings.magnitude': 2.0
+			'settings.magnitude': 2.0,
+			'settings.broadcast': true
 		}
 	}, { multi: true }, (err) => {
 		if (err) throw err;

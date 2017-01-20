@@ -17,3 +17,7 @@ module.exports.dateToPrettyDate = (date) => {
 	
 	return `${day}/${month}/${year}`;
 };
+
+module.exports.boolToEnabled = (bool) => {
+	return (bool ? 'attive' : 'non attive');
+};

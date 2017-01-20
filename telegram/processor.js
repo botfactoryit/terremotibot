@@ -37,6 +37,9 @@ class TelegramProcessor {
 				if (msg['type'] == 'sendMessage') {
 					tg.sendMessage(msg);
 				}
+				else if (msg['type'] == 'editMessage') {
+					tg.editMessage(msg);
+				}
 				
 				// ?
 				callback && callback();
@@ -69,6 +72,7 @@ class TelegramProcessor {
 	_handleCallback(query) {
 		logger.debug(`Incoming <query> from <${this.chat.id}>`);
 		let data = query['data'].split(';');
+		let messageId = query['message']['message_id'];
 		
 		if (data[0] == 'settings') {
 			if (data[1] == 'radius') {
@@ -95,7 +99,52 @@ class TelegramProcessor {
 				
 				this.chat.send(msg);
 			}
+			else if (data[1] == 'broadcast') {
+				if (data[2]) {
+					// Enable or disable broadcast notifications
+					let shouldEnable = !!+data[2]; // 0 becomes false, 1 becomes true. Horrible.
+					
+					db.chats.setBroadcast(this.chat['id'], shouldEnable, (err) => {
+						if (err) {
+							this.chat.error();
+							logger.error(err, 'setBroadcast error');
+							return;
+						}
+						
+						this.chat['settings']['broadcast'] = shouldEnable;
+						this._sendBroadcastSettingMessage(messageId);
+					});
+				}
+				else {
+					this._sendBroadcastSettingMessage();
+				}
+			}
 		}
+	}
+	
+	_sendBroadcastSettingMessage(messageId) {
+		let msg = {
+			key: 'broadcast',
+			inline: [
+				[
+					{
+						text: '$$' + (this.chat['settings']['broadcast'] ? 'broadcast_enabled' : 'broadcast_enable'),
+						callback_data: 'settings;broadcast;1'
+					},
+					{
+						text: '$$' + (this.chat['settings']['broadcast'] ? 'broadcast_disable' : 'broadcast_disabled'),
+						callback_data: 'settings;broadcast;0'
+					}
+				]
+			]
+		};
+		
+		if (messageId) {
+			msg['type'] = 'editMessage';
+			msg['messageId'] = messageId;
+		}
+		
+		this.chat.send(msg);
 	}
 	
 	_handleMessage(message) {
@@ -233,11 +282,13 @@ class TelegramProcessor {
 				key: 'settings',
 				data: {
 					radius: this.chat['settings']['radius'],
-					magnitude: this.chat['settings']['magnitude']
+					magnitude: this.chat['settings']['magnitude'],
+					broadcast: this.chat['settings']['broadcast']
 				},
 				inline: [
 					[{ text: '$$settings_menu_radius', callback_data: 'settings;radius' }],
-					[{ text: '$$settings_menu_magnitude', callback_data: 'settings;magnitude' }]
+					[{ text: '$$settings_menu_magnitude', callback_data: 'settings;magnitude' }],
+					[{ text: '$$settings_menu_broadcast', callback_data: 'settings;broadcast' }]
 				]
 			};
 			
