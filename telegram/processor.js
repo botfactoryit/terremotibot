@@ -3,6 +3,7 @@ const db             = require('../db');
 const botan          = require('./botan.js');
 const TelegramClient = require('./client.js');
 const geocoding      = require('../maps').geocoding;
+const LocationsMap   = require('../maps').LocationsMap;
 
 const tg = new TelegramClient();
 
@@ -33,16 +34,20 @@ class TelegramProcessor {
 			chat.send = (msg, callback) => {
 				msg['chat'] = chat['id'];
 				msg['type'] = msg['type'] || 'sendMessage';
+				callback = callback || function() {};
 								
 				if (msg['type'] == 'sendMessage') {
-					tg.sendMessage(msg);
+					tg.sendMessage(msg, callback);
 				}
 				else if (msg['type'] == 'editMessage') {
-					tg.editMessage(msg);
+					tg.editMessage(msg, callback);
 				}
-				
-				// ?
-				callback && callback();
+				else if (msg['type'] == 'sendPhoto') {
+					tg.sendPhoto(msg, callback);
+				}
+				else if (msg['type'] == 'sendChatAction') {
+					tg.sendChatAction(msg, callback);
+				}
 			};
 			
 			chat.error = (callback) => {
@@ -240,7 +245,9 @@ class TelegramProcessor {
 							data: { name }
 						};
 						
-						this.chat.send(msg);
+						this.chat.send(msg, () => {
+							this._sendMap();
+						});
 					});
 				}
 			});
@@ -344,7 +351,9 @@ class TelegramProcessor {
 						data: { name }
 					};
 					
-					this.chat.send(msg);
+					this.chat.send(msg, () => {
+						this._sendMap();
+					});
 				});
 			}
 			else {
@@ -369,7 +378,10 @@ class TelegramProcessor {
 						}
 						
 						let msg = { key: 'radius_ok', data: { value: value } };
-						this.chat.send(msg);
+						
+						this.chat.send(msg, () => {
+							this._sendMap();
+						});
 					});
 					
 					botan.log(this.message, 'radius');
@@ -404,6 +416,40 @@ class TelegramProcessor {
 				}
 			}
 		}
+	}
+	
+	_sendMap() {
+		db.locations.find(this.chat['id'], (err, docs) => {
+			if (err) {
+				this.chat.error();
+				logger.error(err, 'locations find');
+				return;
+			}
+			
+			if (docs.length == 0) {
+				return;
+			}
+			
+			this.chat.send({ type: 'sendChatAction', action: 'upload_photo' });
+			
+			let map = new LocationsMap(this.chat['settings']['radius']);
+			
+			map.addLocations(docs.map((loc) => loc['point']['coordinates']));
+			
+			map.generate((err, fn) => {
+				if (err) {
+					this.chat.error();
+					return;
+				}
+				
+				let msg = {
+					type: 'sendPhoto',
+					path: fn
+				};
+				
+				this.chat.send(msg);
+			});
+		});
 	}
 }
 

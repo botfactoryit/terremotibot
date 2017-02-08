@@ -300,7 +300,7 @@ let locations = {
 	find(chatId, callback) {
 		db.locations.find({
 			chat: chatId
-		}, { name: 1 }, callback);
+		}, { name: true, point: true }, callback);
 	},
 	
 	insert(chatId, lat, lon, name, callback) {

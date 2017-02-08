@@ -267,7 +267,7 @@ class TelegramClient {
 			chat_id: chatId,
 			photo: fs.createReadStream(filePath),
 			reply_markup: JSON.stringify(kb),
-			caption: caption
+			caption: caption || ''
 		};
 				
 		let req = {
@@ -305,6 +305,33 @@ class TelegramClient {
 					}
 				});
 			}
+			
+			callback && callback();
+		});
+	}
+	
+	/**
+	 * Send chat action
+	 */
+	sendChatAction(options, callback) {
+		let chatId = options['chat'];
+		let action = options['action'];
+		
+		let body = {
+			chat_id: chatId,
+			action: action
+		};
+		
+		let req = {
+			method: 'POST',
+			body: body,
+			json: true,
+			url: ENDPOINTS['sendChatAction']
+		};
+		
+		// Best effort
+		request(req, (err, res, resBody) => {
+			this._analyzeResponse(req, err, res, resBody);
 			
 			callback && callback();
 		});
