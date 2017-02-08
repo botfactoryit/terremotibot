@@ -4,6 +4,7 @@ const botan          = require('./botan.js');
 const TelegramClient = require('./client.js');
 const geocoding      = require('../maps').geocoding;
 const LocationsMap   = require('../maps').LocationsMap;
+const stathat        = require('../stathat.js');
 
 const tg = new TelegramClient();
 
@@ -431,6 +432,7 @@ class TelegramProcessor {
 			}
 			
 			this.chat.send({ type: 'sendChatAction', action: 'upload_photo' });
+			stathat.count('terre map');
 			
 			let map = new LocationsMap(this.chat['settings']['radius']);
 			
