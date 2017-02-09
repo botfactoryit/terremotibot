@@ -420,6 +420,8 @@ class TelegramProcessor {
 	}
 	
 	_sendMap() {
+		logger.info(`Sending map to <${this.chat.id}>`);
+		
 		db.locations.find(this.chat['id'], (err, docs) => {
 			if (err) {
 				this.chat.error();
@@ -428,6 +430,7 @@ class TelegramProcessor {
 			}
 			
 			if (docs.length == 0) {
+				logger.debug(`No locations for map <${this.chat.id}>`);
 				return;
 			}
 			
