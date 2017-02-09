@@ -33,9 +33,13 @@ function send(event, callback) {
 			return;
 		}
 		
-		logger.info(`Sending notification for event <${event.id}> to <${chats.length}> chats`);
-		
-		sendToChats(event, chats, callback);
+		if (chats.length) {
+			logger.info(`Sending notification for event <${event.id}> to <${chats.length}> chats`);
+			sendToChats(event, chats, callback);
+		}
+		else {
+			logger.info(`No notifications for event <${event.id}>`);
+		}
 	});
 }
 
