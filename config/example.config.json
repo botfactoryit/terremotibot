@@ -10,7 +10,18 @@
 		"connectionString": ""
 	},
 	"ingv": {
-		"pollingInterval": 60000
+		"pollingInterval": 60000,
+		"broadcastThreshold": 5
+	},
+	"social": {
+		"threshold": 3,
+		"sqs": {
+			"queueUrl": "",
+			"accessKeyId": "",
+			"secretAccessKey": "",
+			"region": "eu-central-1",
+			"apiVersion": "2012-11-05"
+		}
 	},
 	"geonames": {
 		"username": "demo"

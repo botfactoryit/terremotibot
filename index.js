@@ -23,17 +23,22 @@ const TelegramProcessor = require('./telegram').TelegramProcessor;
 const notifications     = require('./telegram/notifications.js');
 const db                = require('./db');
 const geocoding         = require('./maps').geocoding;
+const Card              = require('./maps').Card;
+const social            = require('./social.js');
+
+const BROADCAST_THRESHOLD = config('ingv').broadcastThreshold;
+const SOCIAL_THRESHOLD = config('social').threshold;
 
 // Create the HTTP server for handling tg messages
-var serverPort = config('telegram').serverPort;
-var server = new TelegramServer({ port: serverPort });
+let serverPort = config('telegram').serverPort;
+let server = new TelegramServer({ port: serverPort });
 
 // Start the server
 server.start();
 
 // Process incoming message
 server.on('update', (update) => {
-	var pro = new TelegramProcessor(update);
+	let pro = new TelegramProcessor(update);
 	pro.process();
 });
 
@@ -41,12 +46,12 @@ server.on('update', (update) => {
 // for new earthquakes (comparing the local copy)
 const IngvPoller = require('./ingv/poller');
 
-var options = {
+let options = {
 	interval: config('ingv').pollingInterval,
 	immediate: true
 };
 
-var poller = new IngvPoller(options);
+let poller = new IngvPoller(options);
 
 // New earthquakes found
 // That must be notified
@@ -76,15 +81,28 @@ poller.on('earthquakes', (earthquakes) => {
 			// Update the db representation of the event
 			db.history.setCity(ev['id'], city);
 			
-			// Prepare and send out notifications to the chats
-			// When the process is finished, callback will be called
-			// and the next earthquake event processed
-			if (magnitude >= 5) {
-				notifications.broadcast(ev, callback);
-			}
-			else {
-				notifications.send(ev, callback);
-			}
+			// Generate the image card
+			let card = new Card(ev);
+			card.generate((err, filePath) => {
+				if (!err && filePath) {
+					ev['cardPath'] = filePath;
+				}
+				
+				// Prepare and send out notifications to the chats
+				// When the process is finished, callback will be called
+				// and the next earthquake event processed
+				if (magnitude >= BROADCAST_THRESHOLD) {
+					notifications.broadcast(ev, callback);
+				}
+				else {
+					notifications.send(ev, callback);
+				}
+				
+				// Schedule SQS
+				if (magnitude >= SOCIAL_THRESHOLD) {
+					social.enqueue(ev);
+				}
+			});
 		});
 	}, () => {
 		logger.info('Done');

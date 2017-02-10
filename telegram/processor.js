@@ -420,7 +420,7 @@ class TelegramProcessor {
 	}
 	
 	_sendMap() {
-		logger.info(`Sending map to <${this.chat.id}>`);
+		logger.info(`Sending locations map to <${this.chat.id}>`);
 		
 		db.locations.find(this.chat['id'], (err, docs) => {
 			if (err) {

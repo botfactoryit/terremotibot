@@ -28,7 +28,7 @@ class Ingv {
 	}
 	
 	get(callback) {
-		var params = {
+		let params = {
 			'starttime': this.startDate.format(DATETIME_FORMAT),
 			'endtime': this.endDate.format(DATETIME_FORMAT),
 			'minmag': this.minMagnitude,
@@ -39,18 +39,18 @@ class Ingv {
 			'maxlon': this.maxLongitude
 		};
 		
-		var req = {
+		let req = {
 			url: WS_URL,
 			qs: params,
 			timeout: 35000
 		};
 		
-		var t1 = Date.now();
+		let t1 = Date.now();
 		
 		// Request the INGV web service
 		request(req, (err, response, body) => {
-			var t2 = Date.now();
-			var delta = t2 - t1;
+			let t2 = Date.now();
+			let delta = t2 - t1;
 			
 			// Network error
 			if (err) {
@@ -91,7 +91,7 @@ class Ingv {
 					events = [events];
 				}
 								
-				var earthquakes = [];
+				let earthquakes = [];
 				
 				// Loop through events and extract data
 				events.forEach((ev) => {
@@ -99,17 +99,17 @@ class Ingv {
 					// It will be extracted from the 'publicID' attributes which looks like
 					// smi:webservices.ingv.it/fdsnws/event/1/query?eventId=8863681
 					// The dollar sign in the expression below allows to access the attributes of an XML node
-					var id = ev.$.publicID.split('=')[1];
+					let id = ev.$.publicID.split('=')[1];
 					
 					// Take out the origin (~hypocenter), and magnitude nodes
-					var origin = ev['origin'];
-					var magnitude = ev['magnitude'];
+					let origin = ev['origin'];
+					let magnitude = ev['magnitude'];
 					
 					// Extract and parse the datetime of the event
-					var dateString = origin['time']['value'];
-					var date = moment.utc(dateString).toDate();
+					let dateString = origin['time']['value'];
+					let date = moment.utc(dateString).toDate();
 					
-					var earthquake = {
+					let earthquake = {
 						id: id,
 						zone: ev['description']['text'],
 						date: date,

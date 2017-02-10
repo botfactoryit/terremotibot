@@ -130,7 +130,7 @@ class Card {
 		let time = dateHelper.dateToPrettyTime(event.date);
 		img.draw(`text 247,94 '${time}'`);
 		
-		let output = TEMP_DIR + '/terre-card-' + event['id'] + '.png';
+		let output = TEMP_DIR + '/terre-card-' + event['id'] + '.jpg';
 		img.write(output, (err) => {
 			if (err) {
 				logger.error(err, 'gm error', event, img.args());
