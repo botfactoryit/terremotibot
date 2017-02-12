@@ -5,7 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release-patch": "release-it --github.release=true patch",
+    "release-minor": "release-it --github.release=true minor"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "bistre": "^1.0.1",
-    "eslint": "^3.10.0"
+    "eslint": "^3.10.0",
+    "release-it": "^2.5.4"
   }
 }
