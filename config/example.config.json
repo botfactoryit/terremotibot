@@ -14,6 +14,7 @@
 		"broadcastThreshold": 5
 	},
 	"social": {
+		"enabled": false,
 		"threshold": 3,
 		"sqs": {
 			"queueUrl": "",

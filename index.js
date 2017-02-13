@@ -28,6 +28,7 @@ const social            = require('./social.js');
 
 const BROADCAST_THRESHOLD = config('ingv').broadcastThreshold;
 const SOCIAL_THRESHOLD = config('social').threshold;
+const SOCIAL_ENABLED = config('social').enabled;
 
 // Create the HTTP server for handling tg messages
 let serverPort = config('telegram').serverPort;
@@ -99,7 +100,7 @@ poller.on('earthquakes', (earthquakes) => {
 				}
 				
 				// Schedule SQS
-				if (magnitude >= SOCIAL_THRESHOLD) {
+				if (SOCIAL_ENABLED && magnitude >= SOCIAL_THRESHOLD) {
 					social.enqueue(ev);
 				}
 			});
