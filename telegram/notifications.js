@@ -107,6 +107,7 @@ function sendToChats(event, chats, callback) {
 		
 		distance['kms'] = distance['kms'].toFixed(0);
 		event['distance'] = distance;
+		event['magnitude']['value'] = event['magnitude']['value'].toFixed(1);
 					
 		if (textOnly) {
 			// There was an error generating the card image
