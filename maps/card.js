@@ -131,9 +131,11 @@ class Card {
 		img.draw(`text 247,94 '${time}'`);
 		
 		let output = TEMP_DIR + '/terre-card-' + event['id'] + '.jpg';
+		let args = img.args();
+		
 		img.write(output, (err) => {
 			if (err) {
-				logger.error(err, 'gm error', event, img.args());
+				logger.error(err, 'gm error', event, args);
 				callback(true);
 			}
 			else {
