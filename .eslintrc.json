@@ -2,7 +2,7 @@
     "rules": {
         "indent": ["error", "tab"],
         "quotes": ["error", "single"],
-        "quote-props": ["error", "consistent"],
+        "quote-props": ["error", "as-needed"],
         "semi": ["error", "always"],
         "keyword-spacing": ["error"],
         "no-unused-vars": ["warn", { "vars": "all", "args": "none" }],

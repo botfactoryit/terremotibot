@@ -14,7 +14,7 @@ function init(thedb, callback) {
 }
 
 function createGeoIndex(callback) {
-	db.locations.createIndex({ 'point': '2dsphere' }, (err) => {
+	db.locations.createIndex({ point: '2dsphere' }, (err) => {
 		if (err) callback(err);
 		else callback();
 	});

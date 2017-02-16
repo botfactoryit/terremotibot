@@ -29,14 +29,14 @@ class Ingv {
 	
 	get(callback) {
 		let params = {
-			'starttime': this.startDate.format(DATETIME_FORMAT),
-			'endtime': this.endDate.format(DATETIME_FORMAT),
-			'minmag': this.minMagnitude,
-			'maxmag': this.maxMagnitude,
-			'minlat': this.minLatitude,
-			'maxlat': this.maxLatitude,
-			'minlon': this.minLongitude,
-			'maxlon': this.maxLongitude
+			starttime: this.startDate.format(DATETIME_FORMAT),
+			endtime: this.endDate.format(DATETIME_FORMAT),
+			minmag: this.minMagnitude,
+			maxmag: this.maxMagnitude,
+			minlat: this.minLatitude,
+			maxlat: this.maxLatitude,
+			minlon: this.minLongitude,
+			maxlon: this.maxLongitude
 		};
 		
 		let req = {

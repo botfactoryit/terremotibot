@@ -70,6 +70,8 @@ poller.on('earthquakes', (earthquakes) => {
 		
 		// Convert the geographical coordinates to a city name (reverse geocoding)
 		geocoding.reverse(lat, lon, (err, result) => {
+			if (err) ; // TODO: do something, please
+			
 			let city;
 			if (result) {
 				city = result['name'];
