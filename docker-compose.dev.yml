@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  bot:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - ./test/config.json:/src/config/config.json
+  db:
+    image: mongo:3.2
+    ports: 
+      - 27017:27017
