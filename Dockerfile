@@ -2,7 +2,7 @@ FROM botfactory/docker-graphicsmagick:43793
 MAINTAINER Francesco Tonini <francescoantoniotonini@gmail.com>
 ENV REFRESHED_AT 2017-02-11
 
-# Install odejs
+# Install nodejs
 RUN apk add --update nodejs=6.9.2-r1
 
 # Cleanup
@@ -14,7 +14,8 @@ RUN npm set loglevel info
 RUN cd /src; npm install --production
 
 # Copy app bundle
-COPY . /src
+COPY ./lib /src/lib
+COPY ./index.js /src
 
 # Expose ports to host
 EXPOSE 5000
