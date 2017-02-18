@@ -6,7 +6,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./test/config.json:/src/config/config.json
+      - ./test/config.json:/src/lib/config/config.json
   db:
     image: mongo:3.2
     ports: 
