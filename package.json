@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint lib",
-    "release-patch": "release-it --github.release=true patch",
-    "release-minor": "release-it --github.release=true minor"
+    "release-patch": "release-it patch",
+    "release": "release-it minor",
+    "release-minor": "release-it minor"
   },
   "repository": {
     "type": "git",
