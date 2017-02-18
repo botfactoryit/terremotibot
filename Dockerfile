@@ -24,5 +24,4 @@ EXPOSE 5000
 ENV NODE_ENV=production
 
 # Start
-# NOTE: index.js above is /lib/index.js in source code
 CMD ["node", "/src/index.js"]
