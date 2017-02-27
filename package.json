@@ -35,11 +35,12 @@
   },
   "devDependencies": {
     "bistre": "^1.0.1",
+    "chai": "^3.5.0",
     "eslint": "^3.10.0",
-    "intelli-espower-loader": "^1.0.1",
+    "expect": "^1.20.2",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "power-assert": "^1.4.2",
+    "nock": "^9.0.7",
     "release-it": "^2.5.4"
   }
 }
