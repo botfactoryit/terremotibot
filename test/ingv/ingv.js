@@ -1,7 +1,7 @@
 const expect = require('expect');
 const nock   = require('nock');
 
-const Ingv = require('../../lib/ingv').Ingv;
+const Ingv = require('../../lib/ingv/ingv.js');
 
 function parseDatesRecursive(obj) {
 	Object.keys(obj).forEach((key) => {
