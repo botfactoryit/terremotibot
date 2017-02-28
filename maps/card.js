@@ -20,9 +20,12 @@ class Card {
 		
 		logger.info(`Downloading map for event <${id}>`);
 		
-		// Download the static map file from Google Maps
+		// Download the static map file
 		this._downloadMap(id, lat, lon, (err, mapPath) => {
-			if (err) ; // already handled
+			if (err) {
+				callback && callback(true);
+				return;
+			}
 			
 			logger.info(`Composing card for event <${id}>`);
 			
