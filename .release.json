@@ -1,0 +1,7 @@
+{
+	"changelogCommand": "git log --no-merges --pretty=format:\"* %s (%h)\" [REV_RANGE]",
+	"github": {
+		"release": true,
+		"tokenRef": "GITHUB_TOKEN"
+	}
+}

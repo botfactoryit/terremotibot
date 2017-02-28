@@ -1,13 +1,15 @@
 {
-  "name": "TerremotiBot",
-  "version": "2.0.1",
+  "name": "terremotibot",
+  "version": "2.4.1",
   "description": "TerremotiBot",
   "private": true,
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "release-patch": "release-it --github.release=true patch",
-    "release-minor": "release-it --github.release=true minor"
+    "lint": "eslint lib",
+    "release-patch": "release-it patch",
+    "release": "release-it minor",
+    "release-minor": "release-it minor",
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- --opts ./mocha.opts"
   },
   "repository": {
     "type": "git",
@@ -33,7 +35,12 @@
   },
   "devDependencies": {
     "bistre": "^1.0.1",
+    "chai": "^3.5.0",
     "eslint": "^3.10.0",
+    "expect": "^1.20.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "nock": "^9.0.7",
     "release-it": "^2.5.4"
   }
 }

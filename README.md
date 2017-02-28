@@ -1,4 +1,5 @@
-# TerremotiBot
+# TerremotiBot [![buddy pipeline](https://app.buddy.works/botfactory/terremotibot/pipelines/pipeline/44091/badge.svg?token=1ce39961b849f84cb49dda02976d656def4830d8eb28788fbf274129627d2933 "buddy pipeline")](https://app.buddy.works/botfactory/terremotibot/pipelines/pipeline/44091) [![codecov](https://codecov.io/gh/botfactoryit/terremotibot/branch/master/graph/badge.svg)](https://codecov.io/gh/botfactoryit/terremotibot)
+
 
 This is the source code of the Italian bot TerremotiBot, available [on Telegram](https://t.me/TerremotiBot).
 

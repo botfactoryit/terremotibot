@@ -1,9 +1,9 @@
 const bole      = require('bole');
 const mongojs   = require('mongojs');
 const async     = require('async');
-const config    = require('../config');
-const init      = require('../db/init.js');
-const geocoding = require('../maps').geocoding;
+const config    = require('../lib/config');
+const init      = require('../lib/db/init.js');
+const geocoding = require('../lib/maps').geocoding;
 
 bole.output({ level: 'debug', stream: process.stdout });
 const logger = bole('migrate');
@@ -91,7 +91,6 @@ function go() {
 							});
 						}
 					});
-					
 				}
 				else {
 					cb();
