@@ -75,7 +75,7 @@ describe('ingv module', () => {
 			.get('/fdsnws/event/1/query')
 			.query(true)
 			.socketDelay(2000)
-			.reply(200);
+			.reply(400);
 	});
 	
 	it('should handle timeouts', (done) => {
