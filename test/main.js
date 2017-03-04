@@ -1,3 +1,5 @@
+require('bole').output({ level: 'warn', stream: process.stdout });
+
 const helper = require('../lib/helper.js');
 const expect = require('expect');
 
