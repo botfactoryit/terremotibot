@@ -32,7 +32,8 @@
 		"object-shorthand": ["warn", "methods"],
 		"prefer-arrow-callback": ["error"],
 		"prefer-rest-params": ["warn"],
-		"template-curly-spacing": ["warn", "never"]
+		"template-curly-spacing": ["warn", "never"],
+		"no-var": ["warn"]
 	},
 	"env": {
 		"node": true,
