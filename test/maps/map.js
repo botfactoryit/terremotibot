@@ -16,7 +16,9 @@ describe('maps/locationsmap module', () => {
 		});
 	});
 	
-	it('should generate locations map', (done) => {
+	it('should generate locations map', function(done) {
+		this.timeout(5000);
+		
 		let map = new LocationsMap(100);
 		
 		map.addLocations([[10.893995, 45.918417], [12.288648, 42.010959]]);
