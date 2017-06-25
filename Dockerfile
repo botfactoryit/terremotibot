@@ -1,26 +1,20 @@
 FROM botfactory/docker-graphicsmagick:43793
 MAINTAINER Francesco Tonini <francescoantoniotonini@gmail.com>
-ENV REFRESHED_AT 2017-02-11
+ENV REFRESHED_AT 2017-06-25
 
-# Install nodejs
-RUN apk add --update nodejs=6.9.2-r1
-
-# Cleanup
-RUN rm -rf /var/lib/apt/lists/*
-
-# Install app dependencies
-COPY package.json /src/package.json
-RUN npm set loglevel info
-RUN cd /src; npm install --production
-
-# Copy app bundle
-COPY ./lib /src/lib
-COPY ./index.js /src
+COPY . src/
+RUN echo "Install nodejs + set npm loglevel" \
+	&& apk add --update nodejs \
+	&& npm set loglevel info \
+	&& echo "Move to /src and install app dependencies"  \
+	&& cd /src \
+	&& npm install --production \
+	&& echo "Done :)"
 
 # Expose ports to host
 EXPOSE 5000
 
-# Set envs
+# Se envs
 ENV NODE_ENV=production
 
 # Start
