@@ -31,7 +31,7 @@
 	"broadcast_disabled": ":white_check_mark: Disattiva",
 	"broadcast_disable": "Disattiva",
 	
-	"notification": "TERREMOTO alle {{time date}}\nEpicentro a {{distance.kms}} km da {{distance.name}}\n\n• Luogo: {{city}}\n• Magnitudo ({{magnitude.type}}): {{magnitude.value}}",
+	"notification": "TERREMOTO alle {{time date}}\nMagnitudo {{magnitude.value}}, a {{distance.kms}} km da {{distance.name}}\n\n• Luogo: {{city}}",
 	"notification_survey": ":exclamation: Compila il questionario",
 	"notification_details": ":earth_africa: Dettagli",
 	"details": "Terremoto ore {{time date}} del {{date date}}\n\n• <strong>Epicentro</strong>: {{city}}\n• <strong>Coordinate</strong>: {{origin.lat}}, {{origin.lon}}\n\n• <strong>Profondità</strong>: {{origin.depth}} km\n• <strong>Magnitudo</strong> ({{magnitude.type}}): {{magnitude.value}} ± {{magnitude.uncertainty}}\n• Rilevato da {{stationsCount}} stazioni",
