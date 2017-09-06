@@ -1,7 +1,16 @@
-# TerremotiBot [![buddy pipeline](https://app.buddy.works/botfactory/terremotibot/pipelines/pipeline/44091/badge.svg?token=1ce39961b849f84cb49dda02976d656def4830d8eb28788fbf274129627d2933 "buddy pipeline")](https://app.buddy.works/botfactory/terremotibot/pipelines/pipeline/44091) [![codecov](https://codecov.io/gh/botfactoryit/terremotibot/branch/master/graph/badge.svg)](https://codecov.io/gh/botfactoryit/terremotibot)
-
-
-This is the source code of the Italian bot TerremotiBot, available [on Telegram](https://t.me/TerremotiBot).
+<h1 align="center">
+  <a href="https://botfactory.info/terremotibot"><img src="https://botfactory.info/terremotibot/resources/logo_header.png" alt="TerremotiBot" /></a>
+</h1>
+<div align="center">
+  <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a> 
+  <a href="https://codecov.io/gh/botfactoryit/terremotibot"><img src="https://img.shields.io/codecov/c/github/botfactoryit/terremotibot.svg" alt="Code coverage"></a>
+  <a href="https://david-dm.org/botfactoryit/terremotibot"><img src="https://img.shields.io/david/botfactoryit/terremotibot.svg" alt="Dependencies"></a>
+  <a href="https://github.com/botfactoryit/terremotibot/blob/master/LICENSE"><img src="https://img.shields.io/github/license/botfactoryit/terremotibot.svg" alt="License"></a>
+</div>
+<br/>
+<div align="center">
+🎯 Source code of the Italian bot TerremotiBot, available <a href="https://t.me/TerremotiBot">on Telegram</a>
+</div>
 
 ## How to run
 
