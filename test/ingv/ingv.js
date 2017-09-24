@@ -25,8 +25,8 @@ describe('ingv module', () => {
 		nock('http://webservices.rm.ingv.it')
 			.get('/fdsnws/event/1/query')
 			.query({
-				starttime: require('moment').utc().subtract(1, 'd').format('YYYY-MM-DDTHH:mm:ss'),
-				endtime: require('moment').utc().add(1, 'd').format('YYYY-MM-DDTHH:mm:ss'),
+				starttime: require('moment').utc().subtract(6, 'hours').format('YYYY-MM-DDTHH:mm:ss'),
+				endtime: require('moment').utc().add(6, 'hours').format('YYYY-MM-DDTHH:mm:ss'),
 				minmag: 2,
 				maxmag: 10,
 				minlat: 35,
