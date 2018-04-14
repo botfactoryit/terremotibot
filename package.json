@@ -15,8 +15,8 @@
     "type": "git",
     "url": "git+https://github.com/botfactoryit/terremotibot.git"
   },
-  "homepage": "https://botfactory.info/terremotibot",
-  "author": "BotFactory <info@botfactory.info>",
+  "homepage": "https://terremotibot.it",
+  "author": "Matteo Contrini <m.contrini@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "async": "^2.1.4",
