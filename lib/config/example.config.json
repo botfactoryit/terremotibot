@@ -3,9 +3,6 @@
 		"token": "",
 		"serverPort": 0
 	},
-	"botan": {
-		"token": ""
-	},
 	"db": {
 		"connectionString": ""
 	},

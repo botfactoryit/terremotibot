@@ -29,7 +29,6 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | --- | -------- | ----------- |
 | `telegram.token` | Yes | The [Telegram Bot API](https://core.telegram.org/bots/api) bot token |
 | `telegram.serverPort` | Yes | The port used for the HTTP webhook server |
-| `botan.token` | No | The token to be used to log incoming messages on the [Botan](http://botan.io/) platform. Leave blank to disable Botan integration |
 | `db.connectionString` | Yes | [MongoDB connection string](https://docs.mongodb.com/manual/reference/connection-string/) |
 | `ingv.pollingInterval` | Yes | Interval for [INGV](http://cnt.rm.ingv.it/) server polling |
 | `ingv.broadcastThreshold` | Yes | Magnitude threshold value. Earthquakes with a magnitude above this value will be notified to all chats in the database. To disable broadcast notifications, set the value to an high number (like 10) |
