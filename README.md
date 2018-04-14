@@ -15,6 +15,7 @@
 ## How to run
 
 ```js
+yarn
 node index.js
 ```
 
