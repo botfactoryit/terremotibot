@@ -22,7 +22,7 @@ function parseDatesRecursive(obj) {
 
 describe('ingv module', () => {
 	before(() => {
-		nock('http://webservices.rm.ingv.it')
+		nock('http://webservices.ingv.it')
 			.get('/fdsnws/event/1/query')
 			.query({
 				starttime: require('moment').utc().subtract(6, 'hours').format('YYYY-MM-DDTHH:mm:ss'),
@@ -51,7 +51,7 @@ describe('ingv module', () => {
 	});
 	
 	before(() => {
-		nock('http://webservices.rm.ingv.it')
+		nock('http://webservices.ingv.it')
 			.get('/fdsnws/event/1/query')
 			.query(true)
 			.replyWithFile(200, __dirname + '/ingv2.xml');
@@ -71,7 +71,7 @@ describe('ingv module', () => {
 	});
 	
 	before(() => {
-		nock('http://webservices.rm.ingv.it')
+		nock('http://webservices.ingv.it')
 			.get('/fdsnws/event/1/query')
 			.query(true)
 			.socketDelay(2000)
@@ -89,7 +89,7 @@ describe('ingv module', () => {
 	});
 	
 	before(() => {
-		nock('http://webservices.rm.ingv.it')
+		nock('http://webservices.ingv.it')
 			.get('/fdsnws/event/1/query')
 			.query(true)
 			.reply(204);
