@@ -1,0 +1,11 @@
+FROM botfactory/docker-for-terremotibot:8.10.0
+
+COPY . src/
+RUN cd /src \
+	&& yarn install
+
+ENV NODE_ENV=production
+
+# Start
+WORKDIR /src
+CMD ["yarn", "test"]
