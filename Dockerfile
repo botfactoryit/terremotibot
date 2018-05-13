@@ -1,6 +1,6 @@
 FROM botfactory/docker-for-terremotibot:8.10.0
-MAINTAINER Francesco Tonini <francescoantoniotonini@gmail.com>
 ENV REFRESHED_AT 2018-04-14
+LABEL mantainer="Francesco Tonini <francescoantoniotonini@gmail.com>"
 
 COPY . src/
 RUN echo "Move to /src and install app dependencies"  \
