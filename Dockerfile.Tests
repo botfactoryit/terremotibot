@@ -1,10 +1,14 @@
 FROM botfactory/docker-for-terremotibot:8.10.0
+LABEL mantainer="Matteo Contrini <m.contrini@gmail.com>"
+
+ENV REFRESHED_AT 2018-08-16
+ENV NODE_ENV=production
 
 COPY . src/
+COPY test /src/test/
+
 RUN cd /src \
 	&& yarn install
-
-ENV NODE_ENV=production
 
 # Start
 WORKDIR /src
