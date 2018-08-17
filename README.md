@@ -12,15 +12,6 @@
 🎯 Source code of the Italian bot TerremotiBot, available <a href="https://t.me/TerremotiBot">on Telegram</a>
 </div>
 
-## How to run
-
-```js
-yarn
-node index.js
-```
-
-But before...
-
 ## Configuration
 
 A `config.json` file should be placed in the `config` directory. The template for the configuration file is `example.config.json`.
@@ -38,3 +29,26 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | `geonames.username` | Yes | Username for the [GeoNames](http://www.geonames.org/) service, used for reverse geocoding |
 | `mapbox.token` | Yes | [Mapbox](https://www.mapbox.com/) token for generating the maps for the notifications |
 | `stathat.key` | No | [StatHat](https://www.stathat.com/) key for logging some metrics |
+
+## How to run it
+
+```js
+yarn
+node index.js
+```
+
+## Run with Docker
+
+You can run the application locally with Docker. This Docker Compose configuration brings up a MongoDB instance, and the [base image](https://github.com/botfactoryit/docker-for-terremotibot) already includes all the required dependencies (Node.js, yarn, GraphicsMagick, ffmpeg, vapoursynth with vsimagereader).
+
+```sh
+docker-compose -f docker-compose.dev.yml up --build
+```
+
+## Run tests with Docker
+
+You can run tests locally with Docker. This brings up a MongoDB instance used for runnig tests. After they are completed, stop Compose pressing CTRL+C (once).
+
+```sh
+docker-compose -f docker-compose.tests.yml up --build
+```
