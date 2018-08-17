@@ -1,8 +1,6 @@
 FROM botfactory/docker-for-terremotibot:8.10.0
 LABEL mantainer="Matteo Contrini <m.contrini@gmail.com>"
 
-ENV REFRESHED_AT 2018-08-16
-
 # Move to /src folder
 WORKDIR /src
 

@@ -45,6 +45,18 @@ You can run the application locally with Docker. This Docker Compose configurati
 docker-compose -f docker-compose.dev.yml up --build
 ```
 
+You can also run MongoDB in a separate shell:
+
+```sh
+docker-compose -f docker-compose.dev.yml up mongo
+```
+
+And then run the actual bot:
+
+```sh
+docker-compose -f docker-compose.dev.yml up --build bot
+```
+
 ## Run tests with Docker
 
 You can run tests locally with Docker. This brings up a MongoDB instance used for runnig tests. After they are completed, stop Compose pressing CTRL+C (once).

@@ -5,6 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js | bistre",
     "lint": "eslint lib",
     "release-patch": "release-it patch",
     "release": "release-it minor",
@@ -34,6 +36,7 @@
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
+    "bistre": "^1.0.1",
     "eslint": "^3.10.0",
     "expect": "^1.20.2",
     "istanbul": "^0.4.5",

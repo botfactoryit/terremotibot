@@ -4,7 +4,7 @@ const bole  = require('bole');
 bole.output([{ level: 'debug', stream: process.stdout }]);
 
 const logger = bole('index');
-logger.info('TerremotiBot is booting...');
+logger.info('TerremotiBot is starting...');
 
 // When an expection occurs,
 // log the 'Error' and euthanasia
