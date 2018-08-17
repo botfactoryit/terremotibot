@@ -4,7 +4,7 @@ services:
   bot:
     build:
       context: .
-      dockerfile: Dockerfile.Tests
+      dockerfile: Dockerfile.Dev
     depends_on:
       - mongo
     volumes:

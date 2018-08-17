@@ -3,9 +3,14 @@ LABEL mantainer="Francesco Tonini <francescoantoniotonini@gmail.com>"
 ENV REFRESHED_AT 2018-05-13
 ENV NODE_ENV=production
 
+# Move to /src
 WORKDIR /src
+
+# Install dependencies
 COPY package.json yarn.lock ./
 RUN yarn install --production
+
+# Copy the app files
 COPY . .
 
 # Expose ports to host

@@ -1,7 +1,7 @@
 node_modules
 scripts
 .*
-Dockerfile
+Dockerfile*
+docker-compose.*.yml
 README.md
 LICENSE
-docker-compose.dev.yml

@@ -1,17 +1,20 @@
 FROM botfactory/docker-for-terremotibot:8.10.0
-LABEL mantainer="Matteo Contrini <m.contrini@gmail.com>"
 
+LABEL mantainer="Matteo Contrini <m.contrini@gmail.com>"
 ENV REFRESHED_AT 2018-08-16
 
-# Move to /src folder
+# Move to /src
 WORKDIR /src
 
 # Install dependencies
 COPY package.json yarn.lock ./
-RUN yarn install
+RUN yarn install --production
 
 # Copy the app files
 COPY . .
 
+# Expose ports to host
+EXPOSE 5000
+
 # Start
-CMD ["yarn", "test"]
+CMD ["node", "/src/index.js"]
