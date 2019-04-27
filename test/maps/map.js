@@ -10,7 +10,7 @@ describe('maps/locationsmap module', () => {
 		let tiles = [[32, 22], [32, 23], [32, 24], [32, 25], [32, 26], [33, 22], [33, 23], [33, 24], [33, 25], [33, 26], [34, 22], [34, 23], [34, 24], [34, 25], [34, 26], [35, 22], [35, 23], [35, 24], [35, 25], [35, 26], [36, 22], [36, 23], [36, 24], [36, 25], [36, 26]];
 		
 		tiles.forEach((t) => {
-			nock('http://korona.geog.uni-heidelberg.de/tiles/roads/x=' + t[0] + '&y=' + t[1] + '&z=6')
+			nock('https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/6/' + t[0] + '/' + t[1] + '.png')
 				.get('')
 				.replyWithFile(200, __dirname + '/tiles/' + t[0] + '-' + t[1]);
 		});
