@@ -8,9 +8,6 @@
     "start": "node index.js",
     "dev": "node index.js | bistre",
     "lint": "eslint lib",
-    "release-patch": "release-it patch",
-    "release": "release-it minor",
-    "release-minor": "release-it minor",
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- --opts ./mocha.opts"
   },
   "repository": {
@@ -18,7 +15,7 @@
     "url": "git+https://github.com/botfactoryit/terremotibot.git"
   },
   "homepage": "https://terremotibot.it",
-  "author": "Matteo Contrini <m.contrini@gmail.com>",
+  "author": "Matteo Contrini <matteo@contrini.it>",
   "license": "MIT",
   "dependencies": {
     "async": "^2.1.4",
@@ -41,7 +38,6 @@
     "expect": "^1.20.2",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "nock": "9.0.7",
-    "release-it": "^2.5.4"
+    "nock": "^9.0.7"
   }
 }

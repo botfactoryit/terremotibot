@@ -1,4 +1,4 @@
-FROM botfactory/docker-for-terremotibot:8.10.0
+FROM botfactory/docker-for-terremotibot:8.16.0
 
 LABEL mantainer="Matteo Contrini <m.contrini@gmail.com>"
 
@@ -6,8 +6,8 @@ LABEL mantainer="Matteo Contrini <m.contrini@gmail.com>"
 WORKDIR /src
 
 # Install dependencies
-COPY package.json yarn.lock ./
-RUN yarn install
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # Copy the app files
 COPY . .
@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 5000
 
 # Start
-CMD ["yarn", "run", "dev"]
+CMD ["npm", "run", "dev"]
