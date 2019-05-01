@@ -13,7 +13,7 @@ services:
       - ./tmp:/tmp
   mongo:
     container_name: mongo
-    image: mongo:3.6.3
+    image: mongo:4.0.6
     ports:
       - "28000:27017"
     logging:
