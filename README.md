@@ -35,8 +35,8 @@ A `config.json` file should be placed in the `config` directory. The template fo
 ## How to run it
 
 ```js
-yarn
-node index.js
+npm ci
+npm run dev
 ```
 
 ## Run with Docker
