@@ -25,7 +25,9 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | `ingv.broadcastThreshold` | Yes | Magnitude threshold value. Earthquakes with a magnitude above this value will be notified to all chats in the database. To disable broadcast notifications, set the value to an high number (like 10) |
 | `social.enabled` | Yes | Enable or disable the feature that publishes earthquakes to an [Amazon SQS](https://aws.amazon.com/sqs/) queue, for being later [published](https://github.com/botfactoryit/terremotibot-social) to social networks |
 | `social.threshold` | No | Social publish threshold value |
-| `social.sqs` | No | Credentials for publishing earthquakes and image cards to [SQS](https://aws.amazon.com/sqs/) |
+| `social.facebook.accessToken` | No | Generate a permanent access token for the page you want to publish to. See [Facebook docs](https://developers.facebook.com/docs/marketing-api/authentication) or [StackOverflow](http://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token) |
+| `social.facebook.pageId` | No | The ID of the page you want to publish the post to           |
+| `social.twitter.*` | No | Twitter keys                                                 |
 | `geonames.username` | Yes | Username for the [GeoNames](http://www.geonames.org/) service, used for reverse geocoding |
 | `mapbox.token` | Yes | [Mapbox](https://www.mapbox.com/) token for generating the maps for the notifications |
 | `stathat.key` | No | [StatHat](https://www.stathat.com/) key for logging some metrics |
