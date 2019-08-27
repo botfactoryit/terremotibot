@@ -1,0 +1,55 @@
+version: v1.0
+
+name: Tests
+
+agent:
+  machine:
+    type: e1-standard-2
+  containers:
+    - name: main
+      image: botfactory/docker-for-terremotibot:dev
+
+blocks:
+  - name: Lint
+    task:
+      prologue:
+        commands:
+          - checkout
+
+          - npm ci
+      jobs:
+        - name: Execute
+          commands:
+            - npm run lint
+
+  - name: Unit test
+    task:
+      secrets:
+        - name: terremotibot
+      prologue:
+        commands:
+          - checkout
+
+          - npm ci
+          - npm install -g codecov
+      jobs:
+        - name: Execute
+          commands:
+            - npm test
+            - codecov -t $CODECOV_TOKEN
+
+  - name: Dockerize (dry-run)
+    task:
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
+      prologue:
+        commands:
+          - checkout
+
+          - mv .dockerignore-prod .dockerignore
+      jobs:
+        - name: Build
+          commands:
+            - docker build -f Dockerfile.Prod .
