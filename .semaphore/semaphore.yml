@@ -14,8 +14,6 @@ blocks:
     task:
       prologue:
         commands:
-          - apt-get install git
-
           - checkout
 
           - npm ci
@@ -30,8 +28,6 @@ blocks:
         - name: terremotibot
       prologue:
         commands:
-          - apt-get install git
-
           - checkout
 
           - npm ci
