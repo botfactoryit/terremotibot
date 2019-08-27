@@ -10,14 +10,10 @@ agent:
 blocks:
   - name: Lint
     task:
-      agent:
-        machine:
-          type: e1-standard-2
-        containers:
-          - name: main
-            image: node:8.16.1-jessie
       prologue:
         commands:
+          - sem-version node 8.16
+          
           - checkout
 
           - npm ci
