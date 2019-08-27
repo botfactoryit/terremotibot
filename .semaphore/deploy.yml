@@ -33,11 +33,12 @@ blocks:
         - name: terremotibot
         - name: fra1tb2
       prologue:
-        - chmod 0600 ~/.keys/*
-        - ssh-add ~/.keys/*
+        commands:
+          - chmod 0600 ~/.keys/*
+          - ssh-add ~/.keys/*
 
-        - checkout
+          - checkout
       jobs:
         - name: SSH
           commands:
-            - ssh deploy@$IP DOCKER_TAG=$SEMAPHORE_GIT_SHA CONTAINER_NAME=terremotibot 'bash -s' < .semaphore/deploy-notifications.sh
+            - ssh deploy@$IP DOCKER_TAG=$SEMAPHORE_GIT_SHA CONTAINER_NAME=terremotibot 'bash -s' < .semaphore/deploy.sh
