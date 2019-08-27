@@ -53,3 +53,7 @@ blocks:
         - name: Build
           commands:
             - docker build -f Dockerfile.Prod .
+
+promotions:
+  - name: Deploy
+    pipeline_file: deploy.yml

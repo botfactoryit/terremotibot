@@ -1,0 +1,43 @@
+version: v1.0
+
+name: Deploy notifications
+
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Dockerize
+    task:
+      secrets:
+        - name: gcloud
+        - name: terremotibot
+      prologue:
+        commands:
+          - gcloud auth activate-service-account --key-file=.secrets/gcloud.json
+          - gcloud auth configure-docker -q
+
+          - checkout
+          - mv .dockerignore-prod .dockerignore
+      jobs:
+        - name: Dockerize
+          commands:
+            - docker build -t "$REPOSITORY/terremotibot:$SEMAPHORE_GIT_SHA" -f Dockerfile.Prod .
+            - docker images
+            - docker push "$REPOSITORY/terremotibot:$SEMAPHORE_GIT_SHA"
+
+  - name: fra1tb2
+    task:
+      secrets:
+        - name: terremotibot
+        - name: fra1tb2
+      prologue:
+        - chmod 0600 ~/.keys/*
+        - ssh-add ~/.keys/*
+
+        - checkout
+      jobs:
+        - name: SSH
+          commands:
+            - ssh deploy@$IP DOCKER_TAG=$SEMAPHORE_GIT_SHA CONTAINER_NAME=terremotibot 'bash -s' < .semaphore/deploy-notifications.sh
