@@ -11,6 +11,8 @@ blocks:
   - name: Lint
     task:
       agent:
+        machine:
+          type: e1-standard-2
         containers:
           - name: main
             image: node:8.16-alpine
@@ -27,6 +29,8 @@ blocks:
   - name: Run tests
     task:
       agent:
+        machine:
+          type: e1-standard-2
         containers:
           - name: main
             image: botfactory/docker-for-terremotibot:dev
