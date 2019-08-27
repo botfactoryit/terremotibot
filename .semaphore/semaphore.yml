@@ -14,6 +14,8 @@ blocks:
     task:
       prologue:
         commands:
+          - apt-get install git
+
           - checkout
 
           - npm ci
@@ -22,12 +24,14 @@ blocks:
           commands:
             - npm run lint
 
-  - name: Unit test
+  - name: Run tests
     task:
       secrets:
         - name: terremotibot
       prologue:
         commands:
+          - apt-get install git
+
           - checkout
 
           - npm ci
