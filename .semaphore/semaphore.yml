@@ -5,7 +5,7 @@ name: Tests
 agent:
   machine:
     type: e1-standard-2
-    osimage: ubuntu1804
+    os_image: ubuntu1804
 
 blocks:
   - name: Lint
@@ -50,10 +50,6 @@ blocks:
 
   - name: Dockerize (dry-run)
     task:
-      agent:
-        machine:
-          type: e1-standard-2
-          os_image: ubuntu1804
       prologue:
         commands:
           - checkout
