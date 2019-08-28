@@ -1,6 +1,6 @@
-FROM botfactory/docker-for-terremotibot:8.16.0
-
-LABEL mantainer="Matteo Contrini <matteo@contrini.it>"
+FROM botfactory/docker-for-terremotibot:8.16.1
+LABEL mantainer Matteo Contrini <matteo@contrini.it>
+ENV REFRESHED_AT 2019-08-28
 
 # Move to /src
 WORKDIR /src
