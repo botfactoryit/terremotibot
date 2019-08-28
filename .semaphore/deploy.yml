@@ -1,6 +1,6 @@
 version: v1.0
 
-name: Deploy notifications
+name: Deploy
 
 agent:
   machine:
@@ -24,7 +24,7 @@ blocks:
           - checkout
           - mv .dockerignore-prod .dockerignore
       jobs:
-        - name: Dockerize
+        - name: Build and push
           commands:
             - docker build -t "$REPOSITORY/terremotibot:$SEMAPHORE_GIT_SHA" -f Dockerfile.Prod .
             - docker images
