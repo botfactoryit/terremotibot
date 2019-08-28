@@ -1,0 +1,68 @@
+version: v1.0
+
+name: Tests
+
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+execution_time_limit:
+  minutes: 4
+
+blocks:
+  - name: Lint
+    task:
+      prologue:
+        commands:
+          - sem-version node 8.16.1
+          
+          - checkout
+
+          - npm ci
+      jobs:
+        - name: Execute
+          commands:
+            - npm run lint
+
+  - name: Run tests
+    task:
+      agent:
+        machine:
+          type: e1-standard-2
+        containers:
+          - name: main
+            image: botfactory/docker-for-terremotibot:8.16.1
+          - name: mongo
+            image: mongo:4.0.6
+      secrets:
+        - name: terremotibot
+      prologue:
+        commands:
+          - checkout
+
+          - npm ci
+          - npm install -g codecov
+
+          - mv ~/.test/config.json lib/config/config.json
+      jobs:
+        - name: Execute
+          commands:
+            - npm test
+            - codecov -t $CODECOV_TOKEN
+
+  - name: Dockerize (dry-run)
+    task:
+      prologue:
+        commands:
+          - checkout
+
+          - mv .dockerignore-prod .dockerignore
+      jobs:
+        - name: Build
+          commands:
+            - docker build -f Dockerfile.Prod .
+
+promotions:
+  - name: Deploy
+    pipeline_file: deploy.yml
