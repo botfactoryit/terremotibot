@@ -57,7 +57,7 @@ blocks:
         commands:
           - checkout
 
-          - mv .dockerignore-prod .dockerignore
+          - export DOCKER_BUILDKIT=1
       jobs:
         - name: Build
           commands:

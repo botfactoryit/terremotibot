@@ -22,7 +22,8 @@ blocks:
           - gcloud auth configure-docker -q
 
           - checkout
-          - mv .dockerignore-prod .dockerignore
+
+          - export DOCKER_BUILDKIT=1
       jobs:
         - name: Build and push
           commands:
