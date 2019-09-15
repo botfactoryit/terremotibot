@@ -10,6 +10,10 @@ agent:
 execution_time_limit:
   minutes: 4
 
+auto_cancel:
+  running:
+    when: 'true'
+
 blocks:
   - name: Lint
     task:
