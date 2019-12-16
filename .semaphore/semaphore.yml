@@ -38,7 +38,7 @@ blocks:
           - name: main
             image: botfactory/docker-for-terremotibot:8.16.1
           - name: mongo
-            image: mongo:4.0.6
+            image: mongo:4.2
       secrets:
         - name: terremotibot
       prologue:
