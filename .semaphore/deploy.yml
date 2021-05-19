@@ -31,11 +31,11 @@ blocks:
             - docker images
             - docker push "$REPOSITORY/terremotibot:$SEMAPHORE_GIT_SHA"
 
-  - name: fra1tb2
+  - name: tb5
     task:
       secrets:
         - name: terremotibot
-        - name: fra1tb2
+        - name: tb5
       prologue:
         commands:
           - chmod 0600 ~/.keys/*
