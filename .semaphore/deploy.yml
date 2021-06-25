@@ -14,12 +14,11 @@ blocks:
   - name: Dockerize
     task:
       secrets:
-        - name: gcloud
+        - name: aws_ecr
         - name: terremotibot
       prologue:
         commands:
-          - gcloud auth activate-service-account --key-file=.secrets/gcloud.json
-          - gcloud auth configure-docker -q
+          - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
 
           - checkout
 
@@ -27,6 +26,8 @@ blocks:
       jobs:
         - name: Build and push
           commands:
+            - export REPOSITORY="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+
             - docker build -t "$REPOSITORY/terremotibot:$SEMAPHORE_GIT_SHA" -f Dockerfile.Prod .
             - docker images
             - docker push "$REPOSITORY/terremotibot:$SEMAPHORE_GIT_SHA"
