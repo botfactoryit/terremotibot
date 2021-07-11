@@ -1,4 +1,4 @@
-FROM botfactory/docker-for-terremotibot:8.16.1
+FROM botfactory/docker-for-terremotibot:14.17.3
 LABEL mantainer Francesco Tonini <francesco@tonini.dev>
 ENV REFRESHED_AT 2019-08-28
 ENV NODE_ENV=production

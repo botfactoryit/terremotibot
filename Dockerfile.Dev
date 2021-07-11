@@ -1,4 +1,4 @@
-FROM botfactory/docker-for-terremotibot:8.16.1
+FROM botfactory/docker-for-terremotibot:14.17.3
 LABEL mantainer Matteo Contrini <matteo@contrini.it>
 ENV REFRESHED_AT 2019-08-28
 
