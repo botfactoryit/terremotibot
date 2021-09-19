@@ -36,7 +36,7 @@ blocks:
           type: e1-standard-2
         containers:
           - name: main
-            image: botfactory/docker-for-terremotibot:8.16.1
+            image: public.ecr.aws/m8i2k7g9/docker-for-terremotibot:8.16.1
           - name: mongo
             image: mongo:4.2
       secrets:

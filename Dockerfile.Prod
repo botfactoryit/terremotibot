@@ -1,6 +1,5 @@
-FROM botfactory/docker-for-terremotibot:8.16.1
+FROM public.ecr.aws/m8i2k7g9/docker-for-terremotibot:8.16.1
 LABEL mantainer Francesco Tonini <francesco@tonini.dev>
-ENV REFRESHED_AT 2019-08-28
 ENV NODE_ENV=production
 
 # Move to /src
