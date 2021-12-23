@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://botfactory.info/terremotibot"><img src="https://botfactory.info/terremotibot/resources/logo_header.png" alt="TerremotiBot" /></a>
+  <a href="https://terremotibot.it"><img src="https://terremotibot.it/resources/logo_header.png" alt="TerremotiBot" /></a>
 </h1>
 <div align="center">
   <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a> 
