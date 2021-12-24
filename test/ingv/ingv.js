@@ -81,7 +81,7 @@ describe('ingv module', () => {
 	it('should handle timeouts', (done) => {
 		new Ingv({ timeout: 1000 }).get((err, res) => {
 			expect(err).toExist();
-			expect(err.type).toBe('networkError');
+			expect(err.type).toBe('responseError');
 			expect(res).toNotExist();
 			
 			done();
