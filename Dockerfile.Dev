@@ -1,4 +1,4 @@
-FROM public.ecr.aws/m8i2k7g9/docker-for-terremotibot:8.16.1
+FROM public.ecr.aws/m8i2k7g9/docker-for-terremotibot:16.13.1
 LABEL mantainer Matteo Contrini <matteo@contrini.it>
 
 # Move to /src
