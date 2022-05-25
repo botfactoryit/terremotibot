@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.13.1
+
+    - name: Setup MongoDB
+      uses: supercharge/mongodb-github-action@1.2.0
+      with:
+        mongodb-version: 4.2
+
+    - name: Setup test environment
+      run: |
+        npm ci
+        npm install -g codecov
+        mv ~/.test/config.json lib/config/config.json
+
+    - name: Run tests
+      run: |
+        npm test
+        codecov -t ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Build
+      uses: docker/build-push-action@v2
+      with:
+        push: false
