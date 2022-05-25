@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  docker:
+  test:
     runs-on: ubuntu-latest
     steps:
 
@@ -36,6 +36,13 @@ jobs:
       run: |
         npm test
         codecov -t ${{ secrets.CODECOV_TOKEN }}
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
 
     - name: Build
       uses: docker/build-push-action@v2
