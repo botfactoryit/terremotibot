@@ -30,7 +30,7 @@ jobs:
       run: |
         npm ci
         npm install -g codecov
-        mv ~/.test/config.json lib/config/config.json
+        echo "${{ secrets.TEST_CONFIG }}" >> lib/config/config.json
 
     - name: Run tests
       run: |
