@@ -28,9 +28,10 @@ jobs:
 
     - name: Setup test environment
       run: |
+        sudo apt install -y imagemagick graphicsmagick
         npm ci
         npm install -g codecov
-        echo "${{ secrets.TEST_CONFIG }}" >> lib/config/config.json
+        echo '${{ secrets.TEST_CONFIG }}' >> lib/config/config.json
 
     - name: Run tests
       run: |
