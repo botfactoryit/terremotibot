@@ -2,8 +2,7 @@
   <a href="https://terremotibot.it"><img src="https://terremotibot.it/resources/logo_header.png" alt="TerremotiBot" /></a>
 </h1>
 <div align="center">
-  <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a> 
-  <a href="https://codecov.io/gh/botfactoryit/terremotibot"><img src="https://img.shields.io/codecov/c/github/botfactoryit/terremotibot.svg" alt="Code coverage"></a>
+  <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a>
   <a href="https://github.com/botfactoryit/terremotibot/blob/master/LICENSE"><img src="https://img.shields.io/github/license/botfactoryit/terremotibot.svg" alt="License"></a>
 </div>
 <br/>
