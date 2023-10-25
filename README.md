@@ -21,7 +21,7 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | `db.connectionString` | Yes | [MongoDB connection string](https://docs.mongodb.com/manual/reference/connection-string/) |
 | `ingv.pollingInterval` | Yes | Interval for [INGV](https://terremoti.ingv.it/) server polling |
 | `ingv.broadcastThreshold` | Yes | Magnitude threshold value. Earthquakes with a magnitude above this value will be notified to all chats in the database. To disable broadcast notifications, set the value to an high number (like 10) |
-| `social.enabled` | Yes | Enable or disable the feature that publishes earthquakes to an [Amazon SQS](https://aws.amazon.com/sqs/) queue, for being later [published](https://github.com/botfactoryit/terremotibot-social) to social networks |
+| `social.enabled` | Yes | Enable or disable the feature that publishes earthquakes to social networks |
 | `social.threshold` | No | Social publish threshold value |
 | `social.facebook.accessToken` | No | Generate a permanent access token for the page you want to publish to. See [Facebook docs](https://developers.facebook.com/docs/marketing-api/authentication) or [StackOverflow](http://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token) |
 | `social.facebook.pageId` | No | The ID of the page you want to publish the post to           |

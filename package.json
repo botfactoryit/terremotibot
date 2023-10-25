@@ -19,7 +19,6 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.6.4",
-    "aws-sdk": "^2.11.0",
     "bole": "^3.0.2",
     "fb": "^2.0.0",
     "gm": "^1.25.0",
