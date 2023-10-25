@@ -30,7 +30,6 @@ jobs:
     - name: Setup test environment
       run: |
         sudo apt update && sudo apt install -y graphicsmagick
-        gm
         gm version
         npm ci
         npm install -g codecov
