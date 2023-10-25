@@ -13,32 +13,11 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     steps:
-
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 16.13.1
-
-    - name: Setup MongoDB
-      uses: supercharge/mongodb-github-action@1.2.0
-      with:
-        mongodb-version: 4.2
-
-    - name: Setup test environment
-      run: |
-        sudo apt update && sudo apt install -y graphicsmagick=1.3.35
-        gm version
-        npm ci
-        npm install -g codecov
-        echo '${{ secrets.TEST_CONFIG }}' >> lib/config/config.json
-
     - name: Run tests
-      run: |
-        DEBUG=gm npm test
-        codecov -t ${{ secrets.CODECOV_TOKEN }}
+      run: docker-compose -f docker-compose.tests.yml up --build
 
   docker:
     name: Docker build
