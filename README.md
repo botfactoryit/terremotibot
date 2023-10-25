@@ -20,7 +20,7 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | `telegram.token` | Yes | The [Telegram Bot API](https://core.telegram.org/bots/api) bot token |
 | `telegram.serverPort` | Yes | The port used for the HTTP webhook server |
 | `db.connectionString` | Yes | [MongoDB connection string](https://docs.mongodb.com/manual/reference/connection-string/) |
-| `ingv.pollingInterval` | Yes | Interval for [INGV](http://cnt.rm.ingv.it/) server polling |
+| `ingv.pollingInterval` | Yes | Interval for [INGV](https://terremoti.ingv.it/) server polling |
 | `ingv.broadcastThreshold` | Yes | Magnitude threshold value. Earthquakes with a magnitude above this value will be notified to all chats in the database. To disable broadcast notifications, set the value to an high number (like 10) |
 | `social.enabled` | Yes | Enable or disable the feature that publishes earthquakes to an [Amazon SQS](https://aws.amazon.com/sqs/) queue, for being later [published](https://github.com/botfactoryit/terremotibot-social) to social networks |
 | `social.threshold` | No | Social publish threshold value |
