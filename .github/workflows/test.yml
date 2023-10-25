@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches:
-      - master
+      - fix
   pull_request:
     branches:
       - master
@@ -36,7 +36,7 @@ jobs:
 
     - name: Run tests
       run: |
-        npm test
+        DEBUG=gm npm test
         codecov -t ${{ secrets.CODECOV_TOKEN }}
 
   docker:
