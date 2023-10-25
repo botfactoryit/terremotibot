@@ -28,7 +28,6 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | `social.twitter.*` | No | Twitter keys                                                 |
 | `geonames.username` | Yes | Username for the [GeoNames](http://www.geonames.org/) service, used for reverse geocoding |
 | `mapbox.token` | Yes | [Mapbox](https://www.mapbox.com/) token for generating the maps for the notifications |
-| `stathat.key` | No | [StatHat](https://www.stathat.com/) key for logging some metrics |
 
 ## How to run it
 
