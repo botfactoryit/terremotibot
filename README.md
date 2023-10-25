@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://terremotibot.it"><img src="https://terremotibot.it/resources/logo_header.png" alt="TerremotiBot" /></a>
+  <a href="https://terremotibot.it"><img src="logo.png" alt="TerremotiBot" /></a>
 </h1>
 <div align="center">
   <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a>
@@ -38,7 +38,7 @@ npm run dev
 
 ## Run with Docker
 
-You can run the application locally with Docker. This Docker Compose configuration brings up a MongoDB instance, and the [base image](https://github.com/botfactoryit/docker-for-terremotibot) already includes all the required dependencies (Node.js, yarn, GraphicsMagick, ffmpeg, vapoursynth with vsimagereader).
+You can run the application locally with Docker. This Docker Compose configuration brings up a MongoDB instance, and the [base image](https://github.com/botfactoryit/docker-for-terremotibot) already includes all the required dependencies (currently Node.js and GraphicsMagick).
 
 ```sh
 docker-compose -f docker-compose.dev.yml up --build
