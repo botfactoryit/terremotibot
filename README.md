@@ -1,9 +1,8 @@
 <h1 align="center">
-  <a href="https://terremotibot.it"><img src="https://terremotibot.it/resources/logo_header.png" alt="TerremotiBot" /></a>
+  <a href="https://terremotibot.it"><img src="logo.png" alt="TerremotiBot" /></a>
 </h1>
 <div align="center">
-  <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a> 
-  <a href="https://codecov.io/gh/botfactoryit/terremotibot"><img src="https://img.shields.io/codecov/c/github/botfactoryit/terremotibot.svg" alt="Code coverage"></a>
+  <a href="https://github.com/botfactoryit/terremotibot/releases"><img src="https://img.shields.io/github/release/botfactoryit/terremotibot.svg" alt="GitHub release"></a>
   <a href="https://github.com/botfactoryit/terremotibot/blob/master/LICENSE"><img src="https://img.shields.io/github/license/botfactoryit/terremotibot.svg" alt="License"></a>
 </div>
 <br/>
@@ -22,14 +21,13 @@ A `config.json` file should be placed in the `config` directory. The template fo
 | `db.connectionString` | Yes | [MongoDB connection string](https://docs.mongodb.com/manual/reference/connection-string/) |
 | `ingv.pollingInterval` | Yes | Interval for [INGV](https://terremoti.ingv.it/) server polling |
 | `ingv.broadcastThreshold` | Yes | Magnitude threshold value. Earthquakes with a magnitude above this value will be notified to all chats in the database. To disable broadcast notifications, set the value to an high number (like 10) |
-| `social.enabled` | Yes | Enable or disable the feature that publishes earthquakes to an [Amazon SQS](https://aws.amazon.com/sqs/) queue, for being later [published](https://github.com/botfactoryit/terremotibot-social) to social networks |
+| `social.enabled` | Yes | Enable or disable the feature that publishes earthquakes to social networks |
 | `social.threshold` | No | Social publish threshold value |
 | `social.facebook.accessToken` | No | Generate a permanent access token for the page you want to publish to. See [Facebook docs](https://developers.facebook.com/docs/marketing-api/authentication) or [StackOverflow](http://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token) |
 | `social.facebook.pageId` | No | The ID of the page you want to publish the post to           |
 | `social.twitter.*` | No | Twitter keys                                                 |
 | `geonames.username` | Yes | Username for the [GeoNames](http://www.geonames.org/) service, used for reverse geocoding |
 | `mapbox.token` | Yes | [Mapbox](https://www.mapbox.com/) token for generating the maps for the notifications |
-| `stathat.key` | No | [StatHat](https://www.stathat.com/) key for logging some metrics |
 
 ## How to run it
 
@@ -40,7 +38,7 @@ npm run dev
 
 ## Run with Docker
 
-You can run the application locally with Docker. This Docker Compose configuration brings up a MongoDB instance, and the [base image](https://github.com/botfactoryit/docker-for-terremotibot) already includes all the required dependencies (Node.js, yarn, GraphicsMagick, ffmpeg, vapoursynth with vsimagereader).
+You can run the application locally with Docker. This Docker Compose configuration brings up a MongoDB instance, and the [base image](https://github.com/botfactoryit/docker-for-terremotibot) already includes all the required dependencies (currently Node.js and GraphicsMagick).
 
 ```sh
 docker-compose -f docker-compose.dev.yml up --build

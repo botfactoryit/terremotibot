@@ -29,8 +29,5 @@
 	},
 	"mapbox": {
 		"token": ""
-	},
-	"stathat": {
-		"key": ""
 	}
 }

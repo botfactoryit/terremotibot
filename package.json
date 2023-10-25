@@ -18,17 +18,16 @@
   "author": "Matteo Contrini <matteo@contrini.it>",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.1.4",
-    "aws-sdk": "^2.11.0",
-    "bole": "^3.0.1",
+    "async": "^2.6.4",
+    "bole": "^3.0.2",
     "fb": "^2.0.0",
-    "gm": "^1.23.0",
+    "gm": "^1.25.0",
     "handlebars": "^4.0.6",
     "moment-timezone": "^0.5.9",
-    "mongojs": "^2.4.0",
+    "mongojs": "^2.6.0",
     "node-emoji": "^1.5.0",
     "raw-body": "^2.1.7",
-    "request": "^2.78.0",
+    "request": "^2.88.2",
     "staticmapjs": "^1.0.0",
     "twit": "^2.2.11",
     "xml2js": "^0.4.17"
@@ -38,7 +37,7 @@
     "eslint": "^3.10.0",
     "expect": "^1.20.2",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "nock": "^9.0.7"
+    "mocha": "^3.5.3",
+    "nock": "^9.6.1"
   }
 }
