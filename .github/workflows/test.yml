@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches:
-      - fix
+      - master
   pull_request:
     branches:
       - master
@@ -15,7 +15,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-
     - name: Run tests
       run: docker-compose -f docker-compose.tests.yml up --build
 
