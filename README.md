@@ -41,19 +41,19 @@ npm run dev
 You can run the application locally with Docker. This Docker Compose configuration brings up a MongoDB instance, and the [base image](https://github.com/botfactoryit/docker-for-terremotibot) already includes all the required dependencies (currently Node.js and GraphicsMagick).
 
 ```sh
-docker-compose -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.dev.yml up --build
 ```
 
 You can also run MongoDB in a separate shell:
 
 ```sh
-docker-compose -f docker-compose.dev.yml up mongo
+docker compose -f docker-compose.dev.yml up mongo
 ```
 
 And then run the actual bot:
 
 ```sh
-docker-compose -f docker-compose.dev.yml up --build bot
+docker compose -f docker-compose.dev.yml up --build bot
 ```
 
 ## Run tests with Docker
