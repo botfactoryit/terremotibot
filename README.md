@@ -31,7 +31,7 @@ A `config.json` file should be placed in the `config` directory. The template fo
 
 ## How to run it
 
-```js
+```sh
 npm ci
 npm run dev
 ```
@@ -58,8 +58,8 @@ docker compose -f docker-compose.dev.yml up --build bot
 
 ## Run tests with Docker
 
-You can run tests locally with Docker. This brings up a MongoDB instance used for runnig tests. After they are completed, stop Compose pressing CTRL+C (once).
+You can run tests locally with Docker. This brings up a MongoDB instance used for running tests. After they are completed, stop Compose pressing CTRL+C (once).
 
 ```sh
-docker-compose -f docker-compose.tests.yml up --build
+docker compose -f docker-compose.tests.yml up --build
 ```

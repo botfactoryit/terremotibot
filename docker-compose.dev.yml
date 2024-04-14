@@ -1,8 +1,5 @@
-version: '3'
-
 services:
   bot:
-    container_name: bot
     build:
       context: .
       dockerfile: Dockerfile.Dev
@@ -12,8 +9,7 @@ services:
       - ./lib/config/config.json:/src/lib/config/config.json
       - ./tmp:/tmp
   mongo:
-    container_name: mongo
-    image: mongo:4.0.6
+    image: mongo:4.2.2
     ports:
       - "28000:27017"
     logging:

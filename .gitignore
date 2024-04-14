@@ -176,7 +176,7 @@ $RECYCLE.BIN/
 
 .idea
 
-config.json
+/config.json
 
 maps/tmp/cards/
 maps/tmp/maps/

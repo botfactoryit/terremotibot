@@ -1,8 +1,5 @@
-version: '3'
-
 services:
-  bot:
-    container_name: tests
+  tests:
     build:
       context: .
       dockerfile: Dockerfile.Tests
@@ -11,8 +8,7 @@ services:
     volumes:
       - ./test/config.json:/src/lib/config/config.json
   mongo:
-    container_name: mongo
-    image: mongo:4.2
+    image: mongo:4.2.2
     expose:
       - "27017"
     logging:

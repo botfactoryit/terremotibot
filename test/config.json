@@ -1,0 +1,39 @@
+{
+    "telegram": {
+        "token": "",
+        "serverPort": 4050
+    },
+    "botan": {
+        "token": ""
+    },
+    "db": {
+        "connectionString": "mongo/terretest"
+    },
+    "ingv": {
+        "pollingInterval": 60000,
+        "broadcastThreshold": 5
+    },
+    "social": {
+        "enabled": false,
+        "threshold": 3,
+        "facebook": {
+            "accessToken": "",
+            "pageId": ""
+        },
+        "twitter": {
+            "consumerKey": "",
+            "consumerSecret": "",
+            "accessToken": "",
+            "accessTokenSecret": ""
+        }
+    },
+    "geonames": {
+        "username": "demo"
+    },
+    "mapbox": {
+        "token": "demo"
+    },
+    "stathat": {
+        "key": ""
+    }
+}
