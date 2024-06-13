@@ -8,7 +8,9 @@
 	},
 	"ingv": {
 		"pollingInterval": 60000,
-		"broadcastThreshold": 5
+		"broadcastAlways": 9,
+		"broadcastThreshold": 5,
+		"broadcastRadius" : 1000
 	},
 	"social": {
 		"enabled": false,
