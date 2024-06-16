@@ -2,6 +2,10 @@ name: Deploy
 
 on: workflow_dispatch
 
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  DOCKER_TAG: ${{ github.sha }}
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -11,7 +15,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: ${{ env.AWS_REGION }}
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v2
     - name: Build
@@ -19,7 +23,7 @@ jobs:
       with:
         push: true
         file: Dockerfile.Prod
-        tags: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_REPOSITORY }}:${{ github.sha }}"
+        tags: "${{ secrets.DOCKER_REGISTRY_NAME }}/terremotibot:${{ env.DOCKER_TAG }}"
 
   deploy:
     runs-on: ubuntu-latest
@@ -32,7 +36,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: ${{ env.AWS_REGION }}
     - name: Prepare deploy
       run: |
         mkdir -p ~/.ssh/
@@ -41,7 +45,11 @@ jobs:
         chmod 0600 ~/.ssh/*
     - name: Deploy
       run: |
-        export DOCKER_REGISTRY_NAME="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com"
-        export DOCKER_REGISTRY_TOKEN="$(aws ecr get-login-password --region ${{ secrets.AWS_REGION }})"
-
-        ssh ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_IP }} -i ~/.ssh/key DOCKER_REGISTRY_TOKEN=$DOCKER_REGISTRY_TOKEN DOCKER_REGISTRY_NAME=$DOCKER_REGISTRY_NAME DOCKER_TAG=${{ github.sha }} CONTAINER_NAME=${{ secrets.AWS_REPOSITORY }} 'bash -s' < .github/workflows/deploy.sh
+        export DOCKER_REGISTRY_TOKEN="$(aws ecr get-login-password)"
+        ssh ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_HOSTNAME }} \
+          -i ~/.ssh/key \
+          DOCKER_REGISTRY_TOKEN=$DOCKER_REGISTRY_TOKEN \
+          DOCKER_REGISTRY_NAME=${{ secrets.DOCKER_REGISTRY_NAME }} \
+          DOCKER_TAG=$DOCKER_TAG \
+          CONTAINER_NAME=terremotibot \
+          'bash -s' < .github/workflows/deploy.sh
